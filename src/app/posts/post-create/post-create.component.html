@@ -1,4 +1,10 @@
 <!----<input type="text"> Better use Text Area rather than Text -->
-<textarea name="" id="" cols="" rows="6"></textarea>
+<!---<textarea name="" id="" cols="" rows="6">{{newPost}}</textarea> -  Notice testarea is a html element and it has a attribute called
+value but we cant use that as value="No content", it wont work. So we have another feature in angular which allows us to directly target properties
+of native HTML elements. SO  if we use [value]="Text", this is not normal text now, it will look Text property of underlying component but if you want this a plain
+text , you need to wrap this in single quote . Example [value]="'Text'" or you say simply [value]="newPost"-->
+
+<textarea rows="6" [value]="newPost"></textarea>
 <hr>
 <button (click)="onAddPost()">Save Button</button>
+<p>{{newPost}}</p>
