@@ -1,0 +1,9 @@
+mat-card {
+  width: 80%;
+  marigin:auto;
+}
+
+mat-form-field,
+textarea {
+  width: 100%;
+}
