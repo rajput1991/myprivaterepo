@@ -16,10 +16,13 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
         <!-- since we can submit empty post , so use HTML 5 validator like required or minlength etc. to validate angular form , but still we can submit fomr.
           solution is  we have to use form.invalid in Ts file
         also-->
-          <input matInput type="text" name ="title" ngModel required>
+          <input matInput type="text" name ="title" ngModel required #title="ngModel">
+          <!-- Use local reference of title as #title="ngmodel"-->
+          <mat-error *ngIf="title.invalid">Please Enter a Post Title</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput rows="6" name="content" ngModel required></textarea>
+          <textarea matInput rows="6" name="content" ngModel required #content="ngModel"></textarea>
+          <mat-error *ngIf="content.invalid">Please Enter a Post Content</mat-error>
         </mat-form-field>
         <button mat-raised-button type="submit" color="warn">Save Button</button>
   </form>
