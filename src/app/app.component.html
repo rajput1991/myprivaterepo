@@ -1,7 +1,9 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <app-header></app-header>
 <main>
-  <app-post-create></app-post-create>
-  <app-post-list></app-post-list>
+  <!-- THis is event binding-->
+  <app-post-create (postCreated)="onPostAdded($event)"></app-post-create>
+  <!-- // Passing those post to app-post-list - THis is property binding from Parent to child-->
+  <app-post-list [posts]="storedPosts"></app-post-list>
 </main>
 

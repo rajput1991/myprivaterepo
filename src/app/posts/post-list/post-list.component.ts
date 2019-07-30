@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
   selector: "app-post-list",
@@ -13,7 +13,8 @@ export class PostListComponent
   //   {title:'Third Post', Content:'This is Third Post\'s Content'}
   // ]
 
-  posts=[];
+  // since PostCreatecomponent is emitting event using @Output , so it makes sense to use @Input here
+  @Input() posts = [];
 
 
 }

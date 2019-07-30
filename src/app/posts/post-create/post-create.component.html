@@ -11,7 +11,10 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
 
 <mat-card>
   <mat-form-field>
-    <textarea matInput rows="6" [(ngModel)]="enteredValue"></textarea>
+    <input matInput type="text" [(ngModel)]="enteredTitle">
+  </mat-form-field>
+  <mat-form-field>
+    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
   </mat-form-field>
   <button mat-raised-button (click)="onAddPost()" color="warn">Save Button</button>
 </mat-card>
