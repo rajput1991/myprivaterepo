@@ -13,10 +13,13 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
   <!-- Notice postForm gives us access to Angular FOrm Object and we can pass this Object as arg. to onAddPost-->
   <form (submit)="onAddPost(postForm)" #postForm="ngForm">
       <mat-form-field>
-          <input matInput type="text" name ="title" ngModel>
+        <!-- since we can submit empty post , so use HTML 5 validator like required or minlength etc. to validate angular form , but still we can submit fomr.
+          solution is  we have to use form.invalid in Ts file
+        also-->
+          <input matInput type="text" name ="title" ngModel required>
         </mat-form-field>
         <mat-form-field>
-          <textarea matInput rows="6" name="content" ngModel></textarea>
+          <textarea matInput rows="6" name="content" ngModel required></textarea>
         </mat-form-field>
         <button mat-raised-button type="submit" color="warn">Save Button</button>
   </form>

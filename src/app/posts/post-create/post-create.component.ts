@@ -25,6 +25,10 @@ export class PostCreateComponent {
   onAddPost(form: NgForm)
   {  // emit your own event for post to be used in postlist component, Use Eventemiiter and pass the post as arguement
     // Use decorator to tell component that this event can be used outside as well. Use @Outout
+    if (form.invalid)
+    {
+      return;
+      }
     const post: Post = {
       // note on value u have to acces name attribute value which you gave in HTML
       title: form.value.title,
