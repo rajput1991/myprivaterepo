@@ -1,15 +1,20 @@
 import { Component } from "@angular/core";
-import { templateJitUrl } from '@angular/compiler';
+import { templateJitUrl } from "@angular/compiler";
 
 @Component({
   selector: "app-post-create",
   templateUrl: "./post-create.component.html"
 })
-export class PostCreateComponent
-{
-  newPost = 'NO CONTENT';
+export class PostCreateComponent {
+  newPost = "NO CONTENT";
+  enteredValue = "";
+  // onAddPost(postInput: HTMLTextAreaElement) {
+  //   //alert("Post Added");
+  //   console.log(postInput);
+  //   console.log(postInput.value);
+  //   this.newPost = postInput.value;
+  // }
   onAddPost() {
-    alert("Post Added");
-    this.newPost = 'The user\'s Post';
+    this.newPost = this.enteredValue;
   }
 }
