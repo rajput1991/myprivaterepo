@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Post } from './posts/post.model';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   //title = 'mean-project';
 
-  storedPosts = [];
+  storedPosts: Post[] = [];
 
   onPostAdded(post)
   {
+    //since array is of type Post now .. you cant add anything . so it enforces structure of Post
     this.storedPosts.push(post);
   }
 }
