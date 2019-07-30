@@ -1,4 +1,4 @@
-<mat-accordion multi="true">
+<mat-accordion multi="true" *ngIf="posts.length>0">
   <!--multi=true is used to expand more than one post at a time-->
 <mat-expansion-panel *ngFor="let post of posts">
   <mat-expansion-panel-header>
@@ -7,3 +7,4 @@
 <p>{{post.Content}}</p>
 </mat-expansion-panel>
 </mat-accordion>
+<p class="info-text mat-body-1" *ngIf="posts.length<=0">No Posts Added yet!</p>
