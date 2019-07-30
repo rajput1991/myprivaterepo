@@ -10,16 +10,25 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
 <!-- Use ngmodel angular feature, but its not bydefault will work because its not in angular core, its in @angular/forms and no need to pass anything to onAddPost() Method -->
 
 <mat-card>
-  <mat-form-field>
-    <input matInput type="text" [(ngModel)]="enteredTitle">
-  </mat-form-field>
-  <mat-form-field>
-    <textarea matInput rows="6" [(ngModel)]="enteredContent"></textarea>
-  </mat-form-field>
-  <button mat-raised-button (click)="onAddPost()" color="warn">Save Button</button>
+  <!-- Notice postForm gives us access to Angular FOrm Object and we can pass this Object as arg. to onAddPost-->
+  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+      <mat-form-field>
+          <input matInput type="text" name ="title" ngModel>
+        </mat-form-field>
+        <mat-form-field>
+          <textarea matInput rows="6" name="content" ngModel></textarea>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="warn">Save Button</button>
+  </form>
+
 </mat-card>
 
 <!-- Notice matInput is the selector which converts this test area into angular material input. By Adding MapInputModule as Import , you unlocked all input related
 componets in your app. But you also need to add this or wrap this text area into <mat-form-field></>-->
+  <!-- Whenever angular sees forms element and we have FormsModule, it will automatically create Js object behind the scene
+  and we can get rid of two way data binding and we can use just ngmodel.so as a directive without any bindings, this will register this input as a control to this behind the
+scenes form.
+However angular needs to know how to name this input,
+so we need to add the normal name attribute and give this any name of your choice, I'll name it title -->
 
 

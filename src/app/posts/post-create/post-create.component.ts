@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { Post } from '../post.model';
+import { NgForm } from '@angular/forms';
+
 
 
 
@@ -20,11 +22,13 @@ export class PostCreateComponent {
   //   console.log(postInput.value);
   //   this.newPost = postInput.value;
   // }
-  onAddPost()
+  onAddPost(form: NgForm)
   {  // emit your own event for post to be used in postlist component, Use Eventemiiter and pass the post as arguement
     // Use decorator to tell component that this event can be used outside as well. Use @Outout
     const post: Post = {
-      title: this.enteredTitle, content: this.enteredContent
+      // note on value u have to acces name attribute value which you gave in HTML
+      title: form.value.title,
+      content: form.value.content
     };
     this.postCreated.emit(post);
 
