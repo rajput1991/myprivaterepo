@@ -1,13 +1,14 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, OnDestroy } from "@angular/core";
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-post-list",
   templateUrl: "./post-list.component.html",
   styleUrls:['./post-list.component.css']
 })
-export class PostListComponent implements OnInit
+export class PostListComponent implements OnInit, OnDestroy
 {
   // posts = [
   //   {title:'First Post', Content:'This is First Post\'s Content'},
@@ -17,6 +18,7 @@ export class PostListComponent implements OnInit
 
   // since PostCreatecomponent is emitting event using @Output , so it makes sense to use @Input here
   posts: Post[] = [];
+  private postSub: Subscription;
   //postsService: PostService;
 
   constructor(public postsService: PostService)
@@ -26,6 +28,15 @@ export class PostListComponent implements OnInit
   }
   ngOnInit(){
     this.posts = this.postsService.getPosts();
+   this.postSub= this.postsService.getPostUpdateListner().subscribe((posts: Post[]) =>
+    {
+      this.posts = posts;
+    });
+  }
+  ngOnDestroy()
+  {
+    //to avoid memory leak if component is not part of dom
+    this.postSub.unsubscribe();
   }
 
 
