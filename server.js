@@ -64,3 +64,7 @@ const server = http.createServer(app);
 server.on("error", onError);
 server.on("listening", onListening);
 server.listen(port);
+
+// Now everytime we have to quit and restart the server for frequent changes its annoying. so use
+// npm install --save-dev nodemon. Its called nodemon for node montitoring to watch changes automatically
+// u can use npm run start:server

@@ -12,7 +12,7 @@ app.use((req,resp,next) => {
   {
     console.log('second MW')
     //next(); // so request wont travel down because we not calling next();
-    resp.send('Hellow from express')
+    resp.send('Hellow from express app')
 }})
 
 // step 3 now we have to wire up our express app with node js server written in server.js
