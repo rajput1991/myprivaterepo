@@ -42,6 +42,7 @@ export class PostCreateComponent {
     };
    // this.postCreated.emit(post);
     this.postservice.addPost(form.value.title, form.value.content);
+    form.resetForm();
 
   }
 }
