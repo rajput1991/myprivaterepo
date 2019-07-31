@@ -1,4 +1,4 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 
@@ -7,7 +7,7 @@ import { PostService } from '../post.service';
   templateUrl: "./post-list.component.html",
   styleUrls:['./post-list.component.css']
 })
-export class PostListComponent
+export class PostListComponent implements OnInit
 {
   // posts = [
   //   {title:'First Post', Content:'This is First Post\'s Content'},
@@ -16,13 +16,16 @@ export class PostListComponent
   // ]
 
   // since PostCreatecomponent is emitting event using @Output , so it makes sense to use @Input here
-  @Input() posts: Post[] = [];
+  posts: Post[] = [];
   //postsService: PostService;
 
   constructor(public postsService: PostService)
   {
  // this.postsService = postsService;
 
+  }
+  ngOnInit(){
+    this.posts = this.postsService.getPosts();
   }
 
 

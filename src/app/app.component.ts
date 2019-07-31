@@ -9,11 +9,11 @@ import { Post } from './posts/post.model';
 export class AppComponent {
   //title = 'mean-project';
 
-  storedPosts: Post[] = [];
+  // storedPosts: Post[] = [];
 
-  onPostAdded(post)
-  {
-    //since array is of type Post now .. you cant add anything . so it enforces structure of Post
-    this.storedPosts.push(post);
-  }
+  // onPostAdded(post)
+  // {
+  //   //since array is of type Post now .. you cant add anything . so it enforces structure of Post
+  //   this.storedPosts.push(post);
+  // }
 }
