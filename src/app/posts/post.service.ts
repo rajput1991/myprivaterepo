@@ -14,7 +14,7 @@ export class PostService {
 
   getPostUpdateListner()
   {//since we emitting , someone need to listen and property is private.so wrote a method
-   return this.postsUpdated.asObservable();
+    return this.postsUpdated.asObservable();
   }
   addPost(title: string, content: string) {
     const post: Post = { title: title, content: content };
