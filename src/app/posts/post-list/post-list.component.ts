@@ -1,5 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { Post } from '../post.model';
+import { PostService } from '../post.service';
 
 @Component({
   selector: "app-post-list",
@@ -16,6 +17,13 @@ export class PostListComponent
 
   // since PostCreatecomponent is emitting event using @Output , so it makes sense to use @Input here
   @Input() posts: Post[] = [];
+  //postsService: PostService;
+
+  constructor(public postsService: PostService)
+  {
+ // this.postsService = postsService;
+
+  }
 
 
 }
