@@ -37,6 +37,7 @@ export class PostCreateComponent {
     }
     const post: Post = {
       // note on value u have to acces name attribute value which you gave in HTML
+      id: null,
       title: form.value.title,
       content: form.value.content
     };
