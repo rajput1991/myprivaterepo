@@ -1,6 +1,11 @@
-const express=require('express');
+const express = require('express');
+const bodyParser = require('body-parser');
 // step 1 create a express app
 const app = express();
+
+//user for all incoming req. on any path
+app.use(bodyParser.json());
+
 
 app.use((req,res,next) => {
   res.setHeader('Access-Control-Allow-origin', '*');
@@ -12,6 +17,17 @@ app.use((req,res,next) => {
 //be sent and therefore you should allow it as http verb.
   //now check angular app , you can see posts from server
   next();
+})
+
+app.post('/api/posts', (req,res,next) => {
+  console.log("");
+  const post = req.body;
+  //we need to extract incoming request data , use npm install --save body-parser. It will parse data and add that data to special property on req. object
+
+  console.log(post);
+  res.status(201).json({
+    message: "Post added succesfully";
+  })
 })
 // step 2 an express app is a big chain of middleware
 app.use('/api/posts',(req,resp,next) => {
