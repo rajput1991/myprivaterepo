@@ -1,6 +1,18 @@
 const express=require('express');
 // step 1 create a express app
-const app=express();
+const app = express();
+
+app.use((req,res,next) => {
+  res.setHeader('Access-Control-Allow-origin', '*');
+  //this * means no matter which domain the app which is sending the request is running on, it's allowed to access our resources,
+  res.setHeader('Access-Control-Allow-Header', "Origin, X-Requested-With,Content-Type,Accept");
+  // this 4 header we added means, incoming req. might have these headers and it will be allowed.
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
+  //This OPTIONS is an implicit request sent by the browser by default prior to post requests for example to check whether the post request is valid, so even if you never directly send such an options request from within your angular app, it will implicitly
+//be sent and therefore you should allow it as http verb.
+  //now check angular app , you can see posts from server
+  next();
+})
 // step 2 an express app is a big chain of middleware
 app.use('/api/posts',(req,resp,next) => {
   {
