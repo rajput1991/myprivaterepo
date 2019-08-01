@@ -3,8 +3,9 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http'
 
-@Injectable({providedIn: 'root'})
-export class PostService {
+@Injectable({ providedIn: 'root' })
+export class PostService
+{
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
 
@@ -13,8 +14,9 @@ export class PostService {
 
   }
 
-  getPosts() {
-   // return [...this.posts];
+  getPosts()
+  {
+    // return [...this.posts];
     //reach to backend and fetch posts and store them in posts. Fetching a post is asynchronous task and might take second
     //return this.posts;
     // anglular http client uses obserables and wont even send req. if you are not interested in response
@@ -30,7 +32,7 @@ export class PostService {
       //Now we need to inform our app for this update
       this.postsUpdated.next([... this.posts]); // we are passing a copy of posts here because we cant edit posts in service
       // now u access the angular app using localhost:4200
-     }
+    }
     );
   }
 
@@ -38,9 +40,18 @@ export class PostService {
   {//since we emitting , someone need to listen and property is private.so wrote a method
     return this.postsUpdated.asObservable();
   }
-  addPost(title: string, content: string) {
-    const post: Post = { id:null, title: title, content: content };
-    this.posts.push(post);
-    this.postsUpdated.next([...this.posts]);
+  addPost(title: string, content: string)
+  {
+    const post: Post = { id: null, title: title, content: content };
+
+    this.http.post<{ message: string }>('http://localhost:3000/api/posts', post).subscribe((responseData) =>
+    {
+      console.log(responseData.message);
+      // push to local only iff successful response
+      // Test the application with both client and server side console.log for POst end point on posts
+      this.posts.push(post);
+      this.postsUpdated.next([...this.posts]);
+    });
+
   }
 }
