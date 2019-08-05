@@ -73,3 +73,12 @@ Setting up Mongodb: 2 options are there
    - select free tier and M0 sandbox which is free
    - select db access link and add new user root and pwd
    - Add ip whitelist : only IP from that list will be able to access db
+
+   you could use normal mongodb client package for connecting to db
+   npm install --save mongodb (see mongodb docs : getting started ->select nodejs as language)
+   but we will not use this mongodb driver for connecting db.
+   we will use moongoose -- third party package. Notice moongoose uses schemas which mongodb driver does not use.
+   so install npm install --save mongoose
+   ----------------------------
+   Undestanding mongoose schemas and models
+   - Post model object at backend has id as well which will be created by mongoose automaticaly for us.
