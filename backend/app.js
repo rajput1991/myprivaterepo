@@ -3,6 +3,16 @@ const bodyParser = require('body-parser');
 // step 1 create a express app
 const app = express();
 const Post= require('./models/post');
+const mongoose= require('mongoose'); // to connect to node app
+/// connect method here will actually return promise
+mongoose.connect('mongodb+srv://root:hwroot@cluster0-j03ig.mongodb.net/test?retryWrites=true&w=majority')
+.then(()=>{
+console.log('Connected to database')
+// u can see this in node js server log ..once server starts
+})
+.catch(()=>{
+console.log('connection failed')
+});
 
 //user for all incoming req. on any path
 app.use(bodyParser.json());

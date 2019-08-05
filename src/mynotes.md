@@ -82,3 +82,6 @@ Setting up Mongodb: 2 options are there
    ----------------------------
    Undestanding mongoose schemas and models
    - Post model object at backend has id as well which will be created by mongoose automaticaly for us.
+   --------
+   Connect node app to mongodb server
+   - go to cloud hosted server -click connect - connect to application & copy the code
