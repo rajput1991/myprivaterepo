@@ -55,4 +55,12 @@ next function it can call and in there,
 the goal is to call next at the end because request should be able to continue to the next middleware
 
 but before we do that, I want to manipulate the request or the response to be precise.
--------------
+-----------------------------------------------------------------
+Database:
+1. We need to persist data on app reload ,so db is needed.
+2. Why dont we directly connect angular to mongodb by surpassing node express app.? It is technically possible.
+But it is highly inscure and secure authentication is not possible. We need credential for login into DB and if we do same in
+angular front end, it can be seen in browser as native JS.
+So directly connecting angular and DB is not a good idea . Instead we will send an http request to node and node has all credentials details which users cant read
+because it resides on server
+
