@@ -64,3 +64,12 @@ angular front end, it can be seen in browser as native JS.
 So directly connecting angular and DB is not a good idea . Instead we will send an http request to node and node has all credentials details which users cant read
 because it resides on server
 
+Setting up Mongodb: 2 options are there
+1. Download mongodb from mongodb.com and install
+2. Cloud solution : Free sandbox is available which is cloud hosted mongodb , free to use for small applications like ours.
+   -sign up on mongodb cloud service
+   - login to account and create a organisation &  project on that account.
+   - Build a new cluster
+   - select free tier and M0 sandbox which is free
+   - select db access link and add new user root and pwd
+   - Add ip whitelist : only IP from that list will be able to access db
