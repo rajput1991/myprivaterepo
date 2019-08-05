@@ -60,17 +60,30 @@ app.use('/api/posts',(req,resp,next) => {
     //next(); // so request wont travel down because we not calling next();
     //resp.send('Hellow from express app');
     //later these posts can come from DB ofcourse
+
+    // till now we retruring dummy data to client
+    // notice on front end we using id while on backend we using _id on server side. we have rename it. 
+    // we have to map like documents.map and map _id to id. but id does not matter because we not showing that on front end
+    // now reload the angular app.. u will see data by default which is there in db
     const posts = [
       { id: '484n349nd', title: 'Firsts server side Post', content: 'This is coming from server' },
       { id: '484n349nd', title: 'second server side Post', content: 'This is coming from server' }
     ]
+    Post.find().
+    then(documents=>{
+console.log(documents);
+resp.status(200).json({
+  message: 'Posts fetched successfully',
+  posts:documents
+}
+)
+    });
+    
+    // will return all result in collection
     //resp.json(posts);
     /// better u can send other object too
-     resp.status(200).json({
-      message: 'Posts fetched successfully',
-      posts:posts
-    }
-    )
+
+    
     //now u can access localhost:3000/api/posts and we will connect angular app to it using angular http client
 
 }})
