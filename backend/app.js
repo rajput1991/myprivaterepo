@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // step 1 create a express app
 const app = express();
+const Post= require('./models/post');
 
 //user for all incoming req. on any path
 app.use(bodyParser.json());
@@ -21,10 +22,17 @@ app.use((req,res,next) => {
 
 app.post('/api/posts', (req,res,next) => {
   console.log("");
-  const post = req.body;
+  const post= new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+  // now test it and check server log and see it has id . you can see node server console for ID
+  // one thing missing is : lets connect our mongodb to node app and save this post
+ // const post = req.body;
   //we need to extract incoming request data , use npm install --save body-parser. It will parse data and add that data to special property on req. object
 
   console.log(post);
+  //rather than logging , lets store this post in db now
   res.status(201).json({
     message: "Post added succesfully"
   })
