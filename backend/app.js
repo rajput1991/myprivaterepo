@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const Post= require('./models/post');
 const mongoose= require('mongoose'); // to connect to node app
-/// connect method here will actually return promise
-mongoose.connect('mongodb+srv://root:hwroot@cluster0-j03ig.mongodb.net/test?retryWrites=true&w=majority')
+/// connect method here will actually return promise . Notice test is db name and u can oveeride this
+mongoose.connect('mongodb+srv://root:hwroot@cluster0-j03ig.mongodb.net/node-angular?retryWrites=true&w=majority')
 .then(()=>{
 console.log('Connected to database')
 // u can see this in node js server log ..once server starts
@@ -42,6 +42,12 @@ app.post('/api/posts', (req,res,next) => {
   //we need to extract incoming request data , use npm install --save body-parser. It will parse data and add that data to special property on req. object
 
   console.log(post);
+  // documents are stored in collection and we need name of collection. what will be the name of collection?
+  // it would be plural form of ur model in lower case . see model name in post.js , so collection name ==posts automatically created in node-angular db
+  // test via app now
+  // u can see in db and choose option mongoshell from mongo cloud service and follow insttructions . >use node-angular , >help
+  // show collections , db.posts.find()
+  post.save();
   //rather than logging , lets store this post in db now
   res.status(201).json({
     message: "Post added succesfully"
