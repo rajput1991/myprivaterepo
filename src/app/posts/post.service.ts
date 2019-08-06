@@ -55,13 +55,21 @@ export class PostService
   }
   addPost(title: string, content: string)
   {
+    // note once adding a post , we are  setting id null explicitly
+    // so if u add a post and delete , it will be gone from frontend but again u reload app ,it will come it is issue.
+    // notice we are not using id which is generated at db server side
     const post: Post = { id: null, title: title, content: content };
 
-    this.http.post<{ message: string }>('http://localhost:3000/api/posts', post).subscribe((responseData) =>
+    this.http.post<{ message: string, postId: string }>('http://localhost:3000/api/posts', post).subscribe((responseData) =>
     {
       console.log(responseData.message);
+      const idsym = responseData.postId;
       // push to local only iff successful response
       // Test the application with both client and server side console.log for POst end point on posts
+      post.id = idsym;
+      // notice we only overriding one property of object defined earlier and not the object itself.
+      // now u can store the post with the updated id
+      // test now
       this.posts.push(post);
       this.postsUpdated.next([...this.posts]);
     });
@@ -69,7 +77,7 @@ export class PostService
   }
   deletePost(postId: string)
   {
-    this.http.delete('http://localhost:3000/api/posts' + postId).subscribe(() =>
+    this.http.delete('http://localhost:3000/api/posts/' + postId).subscribe(() =>
     {  // filer will work on every element of array and if it return true, it will be kept and if false, it wont be kept in array
       // so updatedPosts will be all posts except which we deleted by postId
       const updatedPosts = this.posts.filter(post => post.id !== postId);

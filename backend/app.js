@@ -47,11 +47,17 @@ app.post('/api/posts', (req,res,next) => {
   // test via app now
   // u can see in db and choose option mongoshell from mongo cloud service and follow insttructions . >use node-angular , >help
   // show collections , db.posts.find()
-  post.save();
+  post.save().then(createdPost => {
+    console.log(createdPost); // it will return the post that was actually created
+    // now beside the success message , we can send back post id as well.
+    // now u can use this id in ur post service
+    res.status(201).json({
+      message: "Post added succesfully",
+      postId: createdPost._id
+    })
+  });
   //rather than logging , lets store this post in db now
-  res.status(201).json({
-    message: "Post added succesfully"
-  })
+
 })
 // step 2 an express app is a big chain of middleware
 app.use('/api/posts',(req,resp,next) => {
