@@ -100,6 +100,8 @@ app.delete('/api/posts/:id', (req, resp, next) => {
     console.log(result);
     resp.status(200).json({ message: 'Post Deleted' });
     // now you should not see post at frontend because we acutally deleted from backend..if you reload the app, observer same
+    //thought we updated the backend db by deleting post from db but our frontend is lively updated
+    // if we click the DELETE , we need to wait for next reload for updation of GUI
   })
 
   // now lets connect to angular frontend with this , we have already DELETE button in frontend

@@ -69,7 +69,12 @@ export class PostService
   }
   deletePost(postId: string)
   {
-    this.http.delete('http://localhost:3000/api/posts'+postId).subscribe(()=>{
+    this.http.delete('http://localhost:3000/api/posts' + postId).subscribe(() =>
+    {  // filer will work on every element of array and if it return true, it will be kept and if false, it wont be kept in array
+      // so updatedPosts will be all posts except which we deleted by postId
+      const updatedPosts = this.posts.filter(post => post.id !== postId);
+      this.posts = updatedPosts; // updated the original array with the one which came after deleting post;
+      this.postsUpdated.next(...[this.posts]);// by this whole app knows about this change
       console.log("Deleted");
     })
   }
