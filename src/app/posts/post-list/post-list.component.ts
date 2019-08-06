@@ -33,6 +33,13 @@ export class PostListComponent implements OnInit, OnDestroy
       this.posts = posts;
     });
   }
+  onDelete(postId: string)
+  {
+    this.postsService.deletePost(postId);
+    // now u can check it should atleast send a req. , check logs on frontend as well as on backend
+    // but we still did not updated array on frontend and we actually also did not deleted from backend as well
+  }
+
   ngOnDestroy()
   {
     //to avoid memory leak if component is not part of dom

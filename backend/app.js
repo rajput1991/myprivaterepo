@@ -62,7 +62,7 @@ app.use('/api/posts',(req,resp,next) => {
     //later these posts can come from DB ofcourse
 
     // till now we retruring dummy data to client
-    // notice on front end we using id while on backend we using _id on server side. we have rename it. 
+    // notice on front end we using id while on backend we using _id on server side. we have rename it.
     // we have to map like documents.map and map _id to id. but id does not matter because we not showing that on front end
     // now reload the angular app.. u will see data by default which is there in db
     const posts = [
@@ -78,15 +78,32 @@ resp.status(200).json({
 }
 )
     });
-    
+
     // will return all result in collection
     //resp.json(posts);
     /// better u can send other object too
 
-    
+
     //now u can access localhost:3000/api/posts and we will connect angular app to it using angular http client
 
-}})
+  }
+})
+
+// Implementing HTTP DELETE Operation on POST
+// we need to send an ID in URL for deleting a POst with unique id and this needs to be dynamic because
+// if we hardcoded id , it will delete only particular post
+app.delete('/api/posts/:id', (req, resp, next) => {
+  //notice params is a property managed by express or node js indirectly which gives u access to all encoded params
+  console.log(req.params.id);
+  // see query api documentation for DELETE
+  Post.delete({ _id: req.params.id }).then(result => {
+    console.log(result);
+    resp.status(200).json({ message: 'Post Deleted' });
+    // now you should not see post at frontend because we acutally deleted from backend..if you reload the app, observer same
+  })
+
+  // now lets connect to angular frontend with this , we have already DELETE button in frontend
+})
 
 // step 3 now we have to wire up our express app with node js server written in server.js
 module.exports = app;
