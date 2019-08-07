@@ -19,7 +19,7 @@ export class PostCreateComponent implements OnInit {
   enteredTitle = "";
   private mode = 'create';
   private postId: string;
-  private post: Post;
+   post: Post; // u can access this in its html in ngmodel since it public
   //Now it can emit only Post
  //@Output() postCreated = new EventEmitter<Post>();
   // onAddPost(postInput: HTMLTextAreaElement) {

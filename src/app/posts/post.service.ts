@@ -79,7 +79,21 @@ export class PostService
   {
     // we will return new cloned object here
     // pull out all property of object and add them to new object , so that u dont manipulate original object
-    return {...this.posts.find(p=>p.id==id)};
+    return { ...this.posts.find(p => p.id == id) };
+  }
+  updatePost(id:string, title:string, content:string)
+  {
+  const post: Post={
+    id:id,
+    title: title,
+    content:content
+    }
+    //notice put takes payload unlike DELETE
+    this.http.put('http://localhost:3000/api/posts/' + id, post).subscribe((response) =>
+    {
+      console.log(response);
+
+    })
   }
   deletePost(postId: string)
   {

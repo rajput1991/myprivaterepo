@@ -29,7 +29,16 @@ app.use((req,res,next) => {
   //now check angular app , you can see posts from server
   next();
 })
-
+app.put('/api/posts/:id', (req, resp, next) => {
+  const post = new Post({
+    title: req.body.title,
+    content: req.body.content
+  });
+  Post.updateOne({ _id: req.params.id }, post).then(result => {
+    console.log(result);
+    resp.status(200).json({message:'Updated successfully'});
+  })
+});
 
 app.post('/api/posts', (req, res, next) => {
   console.log("");
