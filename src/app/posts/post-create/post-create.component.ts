@@ -61,7 +61,7 @@ export class PostCreateComponent implements OnInit {
     });
 
   }
-  onAddPost(form: NgForm)
+  onSavePost(form: NgForm)
   {  // emit your own event for post to be used in postlist component, Use Eventemiiter and pass the post as arguement
     // Use decorator to tell component that this event can be used outside as well. Use @Outout
     if (form.invalid)
@@ -74,8 +74,13 @@ export class PostCreateComponent implements OnInit {
       title: form.value.title,
       content: form.value.content
     };
+    if(this.mode =='create'){
    // this.postCreated.emit(post);
-    this.postservice.addPost(form.value.title, form.value.content);
+      this.postservice.addPost(form.value.title, form.value.content);
+    }
+    else {
+      this.postservice.updatePost(this.postId,form.value.title, form.value.content);
+    }
     form.resetForm();
 
   }

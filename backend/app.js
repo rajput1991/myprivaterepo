@@ -23,7 +23,7 @@ app.use((req,res,next) => {
   //this * means no matter which domain the app which is sending the request is running on, it's allowed to access our resources,
   res.setHeader('Access-Control-Allow-Headers', "Origin, X-Requested-With,Content-Type,Accept");
   // this 4 header we added means, incoming req. might have these headers and it will be allowed.
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PATCH,DELETE,OPTIONS");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE,OPTIONS");
   //This OPTIONS is an implicit request sent by the browser by default prior to post requests for example to check whether the post request is valid, so even if you never directly send such an options request from within your angular app, it will implicitly
 //be sent and therefore you should allow it as http verb.
   //now check angular app , you can see posts from server
@@ -36,7 +36,7 @@ app.put('/api/posts/:id', (req, resp, next) => {
   });
   Post.updateOne({ _id: req.params.id }, post).then(result => {
     console.log(result);
-    resp.status(200).json({message:'Updated successfully'});
+    resp.status(200).json({ message: 'Updated successfully' });
   })
 });
 
