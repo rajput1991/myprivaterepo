@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
   <span><a routerLink="/">My DashBoard</a></span>
+  <span class="spacer"></span>
   <ul>
     <li>
-      <a routerLink="/create">New Post</a>
+      <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+      <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
   </ul>
 </mat-toolbar>
