@@ -63,10 +63,10 @@ export class PostService
     this.http.post<{ message: string, postId: string }>('http://localhost:3000/api/posts', post).subscribe((responseData) =>
     {
       console.log(responseData.message);
-      const idsym = responseData.postId;
+      const id = responseData.postId;
       // push to local only iff successful response
       // Test the application with both client and server side console.log for POst end point on posts
-      post.id = idsym;
+      post.id = id;
       // notice we only overriding one property of object defined earlier and not the object itself.
       // now u can store the post with the updated id
       // test now
@@ -82,8 +82,8 @@ export class PostService
       // so updatedPosts will be all posts except which we deleted by postId
       const updatedPosts = this.posts.filter(post => post.id !== postId);
       this.posts = updatedPosts; // updated the original array with the one which came after deleting post;
-      this.postsUpdated.next(...[this.posts]);// by this whole app knows about this change
-      console.log("Deleted");
-    })
+      this.postsUpdated.next([...this.posts]); // by this whole app knows about this change
+      console.log("Deleted now");
+    });
   }
 }
