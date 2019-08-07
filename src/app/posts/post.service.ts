@@ -75,6 +75,12 @@ export class PostService
     });
 
   }
+  getPost(id: string)
+  {
+    // we will return new cloned object here
+    // pull out all property of object and add them to new object , so that u dont manipulate original object
+    return {...this.posts.find(p=>p.id==id)};
+  }
   deletePost(postId: string)
   {
     this.http.delete('http://localhost:3000/api/posts/' + postId).subscribe(() =>

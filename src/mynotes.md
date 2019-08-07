@@ -88,4 +88,48 @@ Setting up Mongodb: 2 options are there
    ------------------------------
    Routing
    -----------
-   1. Routes are simple Js objects which defines for which url which part of app should be presented.
+   1. Routes are simple Js objects which defines for which url which part of app should be presented. see app-routing-module.ts
+   2. client vs server side routing:
+   we have routes at front end now and we also have routes at backend in app.js
+   These both routes are really not connected ,because they are running on diff. server.
+   ow important, these routes here in the angular router are only known by
+
+angular which is a client side application,
+
+so which is a javascript driven application running in the browser.
+
+This means and this will become important when we later deploy this, that the server doesn't know these routes,
+
+neither our backend here nor any server that might serve our angular app
+and I will show you which implications this has and how we make the server aware of this fact later
+
+when we deploy this.
+It's also important to note that if you were to host your angular app on the same server as your node
+
+app, there will be a couple of things to keep in mind which you will see
+
+but one important thing is that you must not use routes you defined in angular like this /create
+
+route here, that you must not use them in your backend too because what would happen then is that the server
+
+would parse and understand them because you defined them there
+
+and it would not parse the page onto angular to also have a look at that, instead it would do what it
+
+does and
+
+this is probably not that it returns the index.html file.
+So this is very abstract, we'll come back to this when we deploy our app
+
+but it's important to understand the difference between client side routing which is all about reading
+
+the url and re-rendering parts of the page and server side routing which is all about handling incoming
+
+requests and sending back something different.
+
+In one case, the server side routing, you really exchange data, you are sending requests and responses, in
+
+the client side case,
+
+you're not doing that, you are reading the url and you're re-rendering the page.
+----------
