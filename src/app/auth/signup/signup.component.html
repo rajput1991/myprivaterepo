@@ -1,0 +1,19 @@
+<mat-card>
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
+  <!--Angular will give ref to complete underlying object by taking local reference #loginForm and pass same in onLogin-->
+  <form (submit)="onSignup(loginForm)" #loginForm="ngForm" *ngIf="!isLoading">
+      <mat-form-field>
+          <input matInput name="email" ngModel type="email" required placeholder="Email Address" #emailInput="ngModel" required email>
+          <mat-error *ngIf="emailInput.invalid">Please Enter a valid Email </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="password" name="password" ngModel placeholder="Password" matInput #password="ngModel" required >
+          <mat-error *ngIf="password.invalid">Please Enter a valid Password</mat-error>
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="warn">SignUp</button>
+  </form>
+
+</mat-card>
+
+
+

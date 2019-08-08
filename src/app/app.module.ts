@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppPage } from '../../e2e/src/app.po';
 import { AppRoutingModule } from './app-routing-module';
 import { LoginComponent } from './auth/login/login.component';
+import { SignUpComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { LoginComponent } from './auth/login/login.component';
     PostCreateComponent,
     HeaderComponent,
     PostListComponent,
-    LoginComponent
+    LoginComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
