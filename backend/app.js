@@ -29,6 +29,18 @@ app.use((req,res,next) => {
   //now check angular app , you can see posts from server
   next();
 })
+app.get('/api/posts/:id', (req, resp, next) => {
+  Post.findById(req.params.id).then(post => {
+    if (post) {
+    //if post exits
+      resp.status(200).json(post);
+    }
+    else {
+      resp.status(404).json({ message: 'Post not found' });
+    }
+  })
+
+});
 app.put('/api/posts/:id', (req, resp, next) => {
   // at this point u will get error:Performing an update on the path '_id' would modify the immutable field '_id'
   //problem is on the backend we try to update existing post with the new post as shown below

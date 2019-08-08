@@ -51,7 +51,10 @@ export class PostCreateComponent implements OnInit {
        //means we want edit else its create componnent , so store this info in private varaible
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
-        this.post = this.postservice.getPost(this.postId);
+        this.postservice.getPost(this.postId).subscribe(postData =>
+        {
+          this.post = { id: postData._id, title: postData.title, content: postData.content };
+        });
         // now just fill ur form with this post and handle submission
     } else{
         this.mode = 'create';

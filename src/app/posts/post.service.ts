@@ -79,7 +79,9 @@ export class PostService
   {
     // we will return new cloned object here
     // pull out all property of object and add them to new object , so that u dont manipulate original object
-    return { ...this.posts.find(p => p.id == id) };
+   // return { ...this.posts.find(p => p.id == id) };
+    return this.http.get<{_id: string,title: string, content: string}>('http://localhost:3000/api/posts/' + id);
+    // notice we wont subscribe here and will subscribe in Post create component
   }
   updatePost(id:string, title:string, content:string)
   {
@@ -92,7 +94,15 @@ export class PostService
     this.http.put('http://localhost:3000/api/posts/' + id, post).subscribe((response) =>
     {
       console.log(response);
-
+      // lets replace current verison of post in post array with that version
+      // first lets clone posts array
+      const updatedPosts = [... this.posts];
+      const oldPostIndex = updatedPosts.findIndex(p => p.id == post.id);
+      updatedPosts[oldPostIndex] = post;
+      this.posts = updatedPosts;
+      this.postsUpdated.next([...this.posts]);
+     // now we have to make sure also once we are on edit page and we reload page , it shd display same page and not empty
+      // add a route in app.js for that
     })
   }
   deletePost(postId: string)
