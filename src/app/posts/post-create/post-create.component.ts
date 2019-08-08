@@ -20,6 +20,7 @@ export class PostCreateComponent implements OnInit {
   private mode = 'create';
   private postId: string;
    post: Post; // u can access this in its html in ngmodel since it public
+  isLoading = false;
   //Now it can emit only Post
  //@Output() postCreated = new EventEmitter<Post>();
   // onAddPost(postInput: HTMLTextAreaElement) {
@@ -51,8 +52,11 @@ export class PostCreateComponent implements OnInit {
        //means we want edit else its create componnent , so store this info in private varaible
         this.mode = 'edit';
         this.postId = paramMap.get('postId');
+        //spinner
+        this.isLoading = true;
         this.postservice.getPost(this.postId).subscribe(postData =>
-        {
+        { //spinner
+          this.isLoading = false;
           this.post = { id: postData._id, title: postData.title, content: postData.content };
         });
         // now just fill ur form with this post and handle submission
@@ -77,6 +81,7 @@ export class PostCreateComponent implements OnInit {
       title: form.value.title,
       content: form.value.content
     };
+    this.isLoading=true;
     if(this.mode =='create'){
    // this.postCreated.emit(post);
       this.postservice.addPost(form.value.title, form.value.content);

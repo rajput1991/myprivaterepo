@@ -19,6 +19,7 @@ export class PostListComponent implements OnInit, OnDestroy
   // since PostCreatecomponent is emitting event using @Output , so it makes sense to use @Input here
   posts: Post[] = [];
   private postSub: Subscription;
+  isLoading = false;
   //postsService: PostService;
 
   constructor(public postsService: PostService)
@@ -26,10 +27,12 @@ export class PostListComponent implements OnInit, OnDestroy
  // this.postsService = postsService;
 
   }
-  ngOnInit(){
+  ngOnInit()
+  {
+    this.isLoading = true;
     this.postsService.getPosts();
    this.postSub= this.postsService.getPostUpdateListner().subscribe((posts: Post[]) =>
-    {
+    { this.isLoading=false;
       this.posts = posts;
     });
   }

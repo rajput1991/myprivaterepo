@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class PostService
@@ -10,7 +11,7 @@ export class PostService
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
 
-  constructor(private http: HttpClient)
+  constructor(private http: HttpClient, private router: Router)
   {
 
   }
@@ -72,6 +73,7 @@ export class PostService
       // test now
       this.posts.push(post);
       this.postsUpdated.next([...this.posts]);
+      this.router.navigate(["/"]);
     });
 
   }
@@ -103,6 +105,7 @@ export class PostService
       this.postsUpdated.next([...this.posts]);
      // now we have to make sure also once we are on edit page and we reload page , it shd display same page and not empty
       // add a route in app.js for that
+      this.router.navigate(["/"]);
     })
   }
   deletePost(postId: string)

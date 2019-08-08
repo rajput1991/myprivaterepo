@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatExpansionModule } from '@angular/material';
+import { MatInputModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
@@ -17,13 +17,15 @@ import { PostService } from './posts/post.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AppPage } from '../../e2e/src/app.po';
 import { AppRoutingModule } from './app-routing-module';
+import { LoginComponent } from './auth/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
-    PostListComponent
+    PostListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { AppRoutingModule } from './app-routing-module';
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    HttpClientModule
+    HttpClientModule,
+    MatProgressSpinnerModule
 
   ],
   providers: [PostService],
