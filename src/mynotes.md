@@ -132,4 +132,17 @@ In one case, the server side routing, you really exchange data, you are sending 
 the client side case,
 
 you're not doing that, you are reading the url and you're re-rendering the page.
-----------
+------------------------------
+Deployment of App:           |
+------------------------------
+Option 1: Two seperated Apps : Angular App + Node Express App in different serverss or ports
+Option 2: Combined App: We have Node Rest API which has special route which renders Angular App also.
+Right now we have option1 with Frontend on localhost:4200 and Backend on localhost:3000 . This is mostly used deployment option.
+On backend we always need a host which is capable of running Node Js code but front end we dont need such thing. only static host
+which can server html,css and js is enough.
+
+Notice for combined app, no need of CORs headers are required because same its same domain and there is nothing like cross domain
+things in combined app. but ur server should be able to run node js script on server. 
+---------
+---------
+Deploying Rest API:

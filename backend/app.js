@@ -30,7 +30,13 @@ app.use((req,res,next) => {
   next();
 })
 app.put('/api/posts/:id', (req, resp, next) => {
+  // at this point u will get error:Performing an update on the path '_id' would modify the immutable field '_id'
+  //problem is on the backend we try to update existing post with the new post as shown below
+  //but since we created a post like below , it will create new id too.
+  // we could ofcourse delete old post and add new one but better add id also in below post because now we are not generating new
+  //id rather re-using the existing id
   const post = new Post({
+    _id: req.body.id,
     title: req.body.title,
     content: req.body.content
   });

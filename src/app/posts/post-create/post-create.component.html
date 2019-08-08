@@ -11,7 +11,7 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
 
 <mat-card>
   <!-- Notice postForm gives us access to Angular FOrm Object and we can pass this Object as arg. to onAddPost-->
-  <form (submit)="onAddPost(postForm)" #postForm="ngForm">
+  <form (submit)="onSavePost(postForm)" #postForm="ngForm">
       <mat-form-field>
         <!-- since we can submit empty post , so use HTML 5 validator like required or minlength etc. to validate angular form , but still we can submit fomr.
           solution is  we have to use form.invalid in Ts file
