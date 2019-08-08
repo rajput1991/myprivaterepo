@@ -2,12 +2,14 @@ import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
+import { LoginComponent } from './auth/login/login.component';
 
 //empty path means root page
 const routes: Routes = [
   { path: '', component: PostListComponent }, // dont give empty string as path (i.e no space between quotes)
   { path: 'create', component: PostCreateComponent },
-  { path: 'edit/:postId', component: PostCreateComponent }
+  { path: 'edit/:postId', component: PostCreateComponent },
+  { path: 'login', component: LoginComponent }
   // notice Postcreatecomponent now will be loaded for different paths , one for save and one for edit
 
 ]
