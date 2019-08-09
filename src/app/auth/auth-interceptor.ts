@@ -24,6 +24,8 @@ export class AuthInterceptor implements HttpInterceptor
     }); // will create copy of req and we can also pass configuration to clone
 
     console.log("Chanaged req" + authRequest.headers);
+    // do remember if we reload our application token is gone because its in memory. so login and then add post without reloading app.
+    // most important
     return next.handle(authRequest);
 
     // continue req journey
