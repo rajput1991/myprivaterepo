@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data.model';
+import { Subject } from 'rxjs';
 
 
 @Injectable({providedIn: 'root'})
 export class AuthService
 {
   private token: string;
+  private authstatusListner = new Subject<boolean>();
+
+  getAuthStatusListener()
+  { //read transcript
+    return this.authstatusListner.asObservable();
+  }
+
     constructor(private http: HttpClient){
 
   }
@@ -41,6 +49,8 @@ export class AuthService
       console.log(response);
       const token = response.token;
       this.token = token;
+// inform everyone about user being authenticated
+      this.authstatusListner.next(true);
       // here we storing the token in service and we want to use this token in other part of application
       // for example in postservice for certain request such as Post DELETE and PUT
       // so simply add a method here getToken because token is private property
