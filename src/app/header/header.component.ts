@@ -29,5 +29,10 @@ export class HeaderComponent implements OnInit, OnDestroy
 
 
   }
+  onLogout()
+  {
+    //should clear token and inform all interested part of page about auth status
+    this.authservice.logout();
+  }
 
 }
