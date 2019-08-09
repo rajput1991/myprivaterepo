@@ -34,8 +34,11 @@ router.post("/signup", (req, resp, next) => {
 })
 
 router.post("/login", (req, resp, next) => {
+  let fetchedUser;
   // First find if email addrress exits
   User.findOne({ email: req.body.email }).then(user => {
+
+    console.log(user);
     if (!user) {
       // means user does not exit in db
       return resp.status(401).json({
@@ -49,8 +52,10 @@ router.post("/login", (req, resp, next) => {
    //So we can use a useful function bcrypt offers, the compare function to compare an input to an encrypted
 //value and bcrypt will tell us if that input would yield the same value without needingto decrypt the encrypted value which would not be possible.
 // user.password is the one stored in db
+    fetchedUser = user;
     return bcrypt.compare(req.body.password, user.password);
   }).then(result => {
+    console.log(result);
     if (!result) {
       //means successful match of password is not there , so return same error
       return resp.status(401).json({
@@ -62,13 +67,16 @@ router.post("/login", (req, resp, next) => {
     // install npm install --save jsonwebtoken
     // sign () method creates token based on input choice which is here json object of email, not the password becuase
     //i dont want to send back data to user even though password is encrypted
-    const token = jwt.sign({ email: user.email, userId: user._id }, 'secret_this_should_be_longer', {
+    // we are accessing user here but it exists only in first then block and not here
+    const token = jwt.sign({ email: fetchedUser.email, userId: fetchedUser._id }, 'secret_this_should_be_longer', {
       expiresIn:"1h"
     });
+    console.log(token); //not printing ,it means something is failing once we sign the token and its going to catch block
     resp.status(200).json({
       token: token
     })
   }).catch(err => {
+    console.log(err); // it will show user is not defined
     // for some other errors if any
     return resp.status(401).json({
       message:"Auth Failed"
