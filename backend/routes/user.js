@@ -73,7 +73,8 @@ router.post("/login", (req, resp, next) => {
     });
     console.log(token); //not printing ,it means something is failing once we sign the token and its going to catch block
     resp.status(200).json({
-      token: token
+      token: token,
+      expiresIn: 3600 // use this at fronend
     })
   }).catch(err => {
     console.log(err); // it will show user is not defined
