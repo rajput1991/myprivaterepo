@@ -62,9 +62,12 @@ router.post("/login", (req, resp, next) => {
     // install npm install --save jsonwebtoken
     // sign () method creates token based on input choice which is here json object of email, not the password becuase
     //i dont want to send back data to user even though password is encrypted
-    const toekn = jwt.sign({ email: user.email, userId: user._id }, 'secret_this_should_be_longer', {
+    const token = jwt.sign({ email: user.email, userId: user._id }, 'secret_this_should_be_longer', {
       expiresIn:"1h"
     });
+    resp.status(200).json({
+      token: token
+    })
   }).catch(err => {
     // for some other errors if any
     return resp.status(401).json({
