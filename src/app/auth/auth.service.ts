@@ -67,6 +67,10 @@ export class AuthService
 
         // inform everyone about user being authenticated
         this.authstatusListner.next(true);
+        const now = new Date();
+        const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+        this.saveAuthData(token, expirationDate);
+        console.log(expirationDate); // see in application chrome ->localstroage
         this.router.navigate(['/']); //navigate to home page
 
       }
@@ -85,5 +89,16 @@ export class AuthService
     this.router.navigate(['/']); //navigate to home page
     clearTimeout(this.tokenTimer); //read transcript important on
   }
+  private saveAuthData(token: string, expirationDate: Date)
+  {
+    localStorage.setItem('token', token);
+    localStorage.setItem('expiration',expirationDate.toISOString());
+
+  }
+  private clearAuthData()
+  {
+    localStorage.remove('token');
+    localStorage.remove('expiration');
+}
 
 }
