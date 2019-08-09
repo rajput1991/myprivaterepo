@@ -236,3 +236,9 @@ creation page,
 I also want to prevent this.
 
 So still some work to do.
+---------------------------
+Missing things:
+1. Image upload
+2. Error Handling
+3. Autorization : Conencting right post to right user
+4 . deployment
