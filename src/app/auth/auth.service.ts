@@ -59,10 +59,7 @@ export class AuthService
       this.token = token;
       if (token) {
         const expiresInDuration = response.expiresIn;
-        this.tokenTimer=setTimeout(() =>
-        {
-          this.logout();
-         }, expiresInDuration * 1000);
+        this.setAuthTime(expiresInDuration);
         this.isAuthenticated = true;
 
         // inform everyone about user being authenticated
@@ -99,12 +96,21 @@ export class AuthService
   {
     const authInformation = this.getAuthData();
     const now = new Date();
-    const isInFuture = authInformation.expirationDate > now; // means token expired
-    if (isInFuture) {
+    const expiresIn = authInformation.expirationDate.getTime() - now.getTime(); // means token expired
+    if (expiresIn>0) {
       this.token = authInformation.token;
       this.isAuthenticated = true;
+      this.setAuthTime(expiresIn/1000);
       this.authstatusListner.next(true);
     }
+  }
+  private setAuthTime(duration: number)
+  {
+    console.log("setting timer" + duration);
+    this.tokenTimer=setTimeout(() =>
+    {
+      this.logout();
+     }, duration * 1000);
   }
   private clearAuthData()
   {
