@@ -146,3 +146,93 @@ things in combined app. but ur server should be able to run node js script on se
 ---------
 ---------
 Deploying Rest API:
+-------------------------------------------------------------------------------
+So now if we reload the app and therefore we are not logged in, we can see that we get no buttons down
+
+there
+
+and that's correct
+
+and as soon as I do login here and I go back, we actually also don't see them.
+
+Now this can be quite challenging to identify, what's the issue here?
+
+The problem is in the post list component, we're setting up our listener, right,
+
+and this of course means whenever we push that authentication information, this will be updated here.
+
+But the problem is the post list component is only loaded after we logged in because we navigated to it,
+
+so ngOnInit only runs after we have authenticated ourselves.
+
+So this of course means there is no new information being pushed after the post list component has been
+
+created and we don't fetch the current information here,
+
+we just push new information.
+
+Now there are a couple of ways of solving this, one is for example to use a different type of subject.
+
+There is a subject which automatically should yield you the previous value but I will use a very straightforward
+
+way instead. Here in auth service,
+
+I will simply add a new private property, isAuthenticated which I'll set to false initially and I will
+
+set it to true in the same place where I push that information,
+
+so here I will set this isAuthenticated equal to true or at least I want to do that if we have a token
+
+because that's a check
+
+I should add anyways, only if we have a valid token, only then I want to set this to true and only then
+
+I want to change the status.
+
+So I will first of all check if we have that token because we could have gotten a response which contains
+
+no token,
+
+so only if that is the case I want to set this
+
+but if it is the case, well then I will use this isAuthenticated and set this to true and push that
+
+information to the other components.
+
+Now since we have this authenticated property in this component now, I can add a new method here at the top,
+
+getAuthStatus or maybe getIsAuth and there I will return
+
+this is authenticated
+
+and now we can call this method to find out whether the user is authenticated. In the post list
+
+component,
+
+I will do that.
+
+I will register this listener because this will become important once we connect the logout button
+
+which will be in here and therefore we are on the page when the auth status changes
+
+but for now when we first visit the page, I will have set this user is authenticated by reaching out
+
+to the auth service and calling getIsAuth there.
+
+And now with that, if we reload and I login
+
+and I go back to my messages, now we correctly see the buttons.
+
+So now this is also working in this case.
+
+Now we're still not there yet,
+
+we need to connect the logout button and we also have another issue. If we are not authenticated, we can still
+
+create a new post by manually entering the URL, I can enter /create here and boom, I'm on the
+
+creation page,
+
+I also want to prevent this.
+
+So still some work to do.
