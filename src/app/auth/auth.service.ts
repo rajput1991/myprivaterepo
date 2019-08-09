@@ -94,7 +94,11 @@ export class AuthService
   }
   getAuthUser()
   {
+
     const authInformation = this.getAuthData();
+    if (!authInformation) {
+      return;
+    }
     const now = new Date();
     const expiresIn = authInformation.expirationDate.getTime() - now.getTime(); // means token expired
     if (expiresIn>0) {
