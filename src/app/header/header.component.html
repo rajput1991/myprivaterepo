@@ -2,20 +2,20 @@
   <span><a routerLink="/">My DashBoard</a></span>
   <span class="spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
       <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
       <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
-    <li>
+    <li *ngIf="!userIsAuthenticated">
       <a mat-button routerLink="/signup" routerLinkActive="mat-accent">SignUp</a>
       <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
     <li>
-      <button mat-button >Logout</button>
+      <button mat-button *ngIf="userIsAuthenticated" >Logout</button>
       <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
   </ul>
