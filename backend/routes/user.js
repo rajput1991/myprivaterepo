@@ -1,5 +1,6 @@
 const exp = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const User = require('../models/user'); // this variable name must match with the one when we create object using new User
 const router = exp.Router();
 
@@ -58,6 +59,12 @@ router.post("/login", (req, resp, next) => {
 
     }
 // here we will have password match and we need to generate token here
+    // install npm install --save jsonwebtoken
+    // sign () method creates token based on input choice which is here json object of email, not the password becuase
+    //i dont want to send back data to user even though password is encrypted
+    const toekn = jwt.sign({ email: user.email, userId: user._id }, 'secret_this_should_be_longer', {
+      expiresIn:"1h"
+    });
   }).catch(err => {
     // for some other errors if any
     return resp.status(401).json({
