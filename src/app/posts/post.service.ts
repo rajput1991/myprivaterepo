@@ -11,6 +11,8 @@ export class PostService
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
 
+  // lets create inteceptor for angular http client which is simply a function which will run on any outgoing http req.
+  // and we can manipulate those requests say for attaching token
   constructor(private http: HttpClient, private router: Router)
   {
 
