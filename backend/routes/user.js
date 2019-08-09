@@ -1,21 +1,24 @@
 const exp = require('express');
 const bcrypt = require('bcrypt');
-const user = require('../models/user');
+const User = require('../models/user'); // this variable name must match with the one when we create object using new User
 const router = exp.Router();
+
 router.post("/signup", (req, resp, next) => {
+  console.log("reached at backend")
   bcrypt.hash(req.body.password, 10).then(hash => {
-    const user = new user({
+    const user = new User({
       email: req.body.email,
       password: hash
-    })
+    });
     user.save().then(result => {
+      console.log(result);
       resp.status(201).json({
         message: 'user created',
         result: result
-   })
+      });
     }).catch(err => {
     resp.status(500).json({
-      error:err
+      error: err
     })
   })
   })
