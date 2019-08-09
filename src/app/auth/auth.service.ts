@@ -95,6 +95,17 @@ export class AuthService
     localStorage.setItem('expiration',expirationDate.toISOString());
 
   }
+  getAuthUser()
+  {
+    const authInformation = this.getAuthData();
+    const now = new Date();
+    const isInFuture = authInformation.expirationDate > now; // means token expired
+    if (isInFuture) {
+      this.token = authInformation.token;
+      this.isAuthenticated = true;
+      this.authstatusListner.next(true);
+    }
+  }
   private clearAuthData()
   {
     localStorage.remove('token');
