@@ -9,7 +9,12 @@ export class AuthService
   private token: string;
     constructor(private http: HttpClient){
 
-    }
+  }
+  getToken()
+  { // now post service can use this method to access token
+    // we have to inject authservice in postservice and add a header in ongoing req. from authservice
+    return this.token;
+  }
 
     createUser(email: string,password: string){
         const authData: AuthData={
