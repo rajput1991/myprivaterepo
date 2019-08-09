@@ -32,4 +32,39 @@ router.post("/signup", (req, resp, next) => {
 
 })
 
+router.post("/login", (req, resp, next) => {
+  // First find if email addrress exits
+  User.findOne({ email: req.body.email }).then(user => {
+    if (!user) {
+      // means user does not exit in db
+      return resp.status(401).json({
+        message: 'Auth Failed'
+      })
+    }
+    // here we know user exists then compare the password what user entered
+    // problem is whatever stored in db hashed pwd and we cant unhash it
+    // so how we will compare with the one user entered
+   // but if you have the same input, you will always get the same hash.
+   //So we can use a useful function bcrypt offers, the compare function to compare an input to an encrypted
+//value and bcrypt will tell us if that input would yield the same value without needingto decrypt the encrypted value which would not be possible.
+// user.password is the one stored in db
+    return bcrypt.compare(req.body.password, user.password);
+  }).then(result => {
+    if (!result) {
+      //means successful match of password is not there , so return same error
+      return resp.status(401).json({
+        message:"Auth Failed"
+      })
+
+    }
+// here we will have password match and we need to generate token here
+  }).catch(err => {
+    // for some other errors if any
+    return resp.status(401).json({
+      message:"Auth Failed"
+    })
+  })
+
+})
+
 module.exports = router;
