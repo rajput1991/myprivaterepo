@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 
 //a guard just a service.. untill we login user should not be able to hit the url like /create etc. to add a post
 // so u need to protect routes
-@Injectable
+@Injectable()
 export class AuthGuard implements CanActivate
 {
   constructor(private authservice: AuthService, private router: Router)
@@ -14,10 +14,13 @@ export class AuthGuard implements CanActivate
    }
   canActivate(route: import("@angular/router").ActivatedRouteSnapshot, state: import("@angular/router").RouterStateSnapshot): boolean | import("@angular/router").UrlTree | import("rxjs").Observable<boolean | import("@angular/router").UrlTree> | Promise<boolean | import("@angular/router").UrlTree>
   {
-    return true; // then router will know that route u protecting is accessible and if false then not accesssble
+    //return true; // then router will know that route u protecting is accessible and if false then not accesssble
     // and router will deny to go there and before returning false , u need to navigate or redirect
     const isAuth = this.authservice.getIsAuth();
+    console.log("coming here");
     if (!isAuth) {
+      console.log("coming here too");
+
       this.router.navigate(['/login']);
 
     }

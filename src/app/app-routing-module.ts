@@ -4,12 +4,13 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './auth/auth.guard';
 
 //empty path means root page
 const routes: Routes = [
   { path: '', component: PostListComponent }, // dont give empty string as path (i.e no space between quotes)
-  { path: 'create', component: PostCreateComponent },
-  { path: 'edit/:postId', component: PostCreateComponent },
+  { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
+  { path: 'edit/:postId', component: PostCreateComponent , canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent}
   // notice Postcreatecomponent now will be loaded for different paths , one for save and one for edit
@@ -20,7 +21,8 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   // notice we need to export Router Module with route configuration also this module to be used in Main App module
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 
 })
 export class AppRoutingModule{
