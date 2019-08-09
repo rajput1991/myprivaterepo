@@ -14,11 +14,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostService } from './posts/post.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppPage } from '../../e2e/src/app.po';
 import { AppRoutingModule } from './app-routing-module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { SignUpComponent } from './auth/signup/signup.component';
     MatProgressSpinnerModule
 
   ],
-  providers: [PostService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
