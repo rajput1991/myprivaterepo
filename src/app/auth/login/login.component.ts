@@ -17,6 +17,7 @@ export class LoginComponent
     if (form.invalid) {
       return;
     }
+    this.isLoading = true;
     // this will call service and service will call backend and backend will call db
     this.authservice.login(form.value.email, form.value.password);
     // test via create a user and then login
