@@ -1,6 +1,10 @@
 const exp= require('express');
 const Post= require('../models/post');
 const router = exp.Router();
+const checkAuth = require('../middleware/check-auth');
+// now u can add this middleware to any route to protect same
+// try posting a post and see console.log , u will se 401 ofcourse we need to handle same at frontend also
+//eventhough u try to delete the post, u wil get 401
 
 router.get('/:id', (req, resp, next) => {
   Post.findById(req.params.id).then(post => {
@@ -13,7 +17,7 @@ router.get('/:id', (req, resp, next) => {
   })
 
 });
-router.put('/:id', (req, resp, next) => {
+router.put('/:id',checkAuth, (req, resp, next) => {
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
@@ -25,7 +29,7 @@ router.put('/:id', (req, resp, next) => {
   })
 });
 
-router.post('', (req, res, next) => {
+router.post('', checkAuth,(req, res, next) => {
   console.log("");
   const post = new Post({
     title: req.body.title,
@@ -55,7 +59,7 @@ router.get('', (req, resp, next) => {
     });
 });
 
-router.delete('/:id', (req, resp, next) => {
+router.delete('/:id',checkAuth, (req, resp, next) => {
   console.log('cominmg here ************************')
   console.log(req.params.id);
   console.log("Deleting from server side $$$$$$$$$$$$$$$$$$$$$$$$$$$$")
