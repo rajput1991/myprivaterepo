@@ -1,0 +1,6 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item" *ngFor="let item of items"><a href="/dashboard"  (click)="onRootItemSelect($event)">{{ item.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">NeighbouringCell1</li>
+    </ol>
+  </nav>

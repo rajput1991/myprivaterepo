@@ -1,9 +1,17 @@
 <mat-toolbar color="primary">
-  <span><a routerLink="/">My DashBoard</a></span>
+  <span><a routerLink="/">HPE ICELAND</a></span>
   <span class="spacer"></span>
   <ul>
     <li *ngIf="userIsAuthenticated">
       <a mat-button routerLink="/create" routerLinkActive="mat-accent">New Post</a>
+      <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/dashboard" routerLinkActive="mat-accent">DashBoard</a>
+      <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/orchestration" routerLinkActive="mat-accent">Orchestration</a>
       <!--routerLinkActive will assign a new css class to that link once router is active and now u can use angular material class-->
     </li>
     <li *ngIf="!userIsAuthenticated">

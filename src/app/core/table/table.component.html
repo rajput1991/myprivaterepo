@@ -1,0 +1,14 @@
+<table class="table">
+    <thead>
+        <tr>
+            <!-- <th *ngFor="let map of columnMaps"> {{ map.header }} </th> -->
+            <th *ngFor="let map of columnMapsData"> {{ map.header }} </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let record of records">
+            <!-- <td *ngFor="let map of columnMaps"  [tablecellstyle] ="record[map.primaryKey]">{{ record[map.primaryKey] | formatCell  }}</td> -->
+            <td *ngFor="let map of columnMapsData"  [tablecellstyle] ="record[map.access(record)]">{{ record[map.access(record)] | formatCell  }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <span class="navbar-text"> RAT:<app-select [options] ="technologies"></app-select></span> <span class="sr-only">(current)</span>
+      </li>
+      <li class="nav-item">
+        <span class="navbar-text"> 5G NE: <app-select [options] ="networkelementTypes"></app-select></span>
+      </li>
+      <li class="nav-item">
+        <span class="navbar-text">Vendor:<app-select [options] ="vendors"></app-select></span>
+      </li>
+      <li class="nav-item">
+        <span class="navbar-text"> Date:<app-datepicker ></app-datepicker></span>
+      </li>
+      <li class="nav-item">
+        <app-button (onClick)="functioncall($event)" [label]="'Submit'"></app-button>
+      </li>
+    </ul>
+    <span class="navbar-text">
+      HPE 5G Networking  Monitoring Solution
+    </span>
+  </div>
+</nav>
+<app-gauge-chart></app-gauge-chart>
+<div class="row vdivide">
+  <div class="col-md-4">Configuration Data:<app-table [records]="PROJECTS"  [settings]="projectSettings"></app-table></div>
+  <div class="col-md-4">Fault Data:<app-table [records]="PERSONNEL" ></app-table></div>
+  <div class="col-md-4">Accounts Data:<app-table [records]="PERSONNEL" ></app-table></div>
+</div>
+
+
+

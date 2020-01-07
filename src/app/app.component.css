@@ -1,4 +1,10 @@
 main {
-  width: 80%;
+  width: 90%;
   margin:1 rem auto;
+  float: left;
+}
+.mypanel{
+  width: 10%;
+  float:right;
+
 }

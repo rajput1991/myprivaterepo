@@ -21,6 +21,11 @@ text , you need to wrap this in single quote . Example [value]="'Text'" or you s
           <!-- Use local reference of title as #title="ngmodel"-->
           <mat-error *ngIf="title.invalid">Please Enter a Post Title</mat-error>
         </mat-form-field>
+        <div>
+          <!-- By default, below button type is submit, so once we click this button , we will get form validation error.button
+           Hence lets use type="button" and now we can click the button without submitting behaviour -->
+          <button mat-stroked-button>Pick Image</button>
+        </div>
         <mat-form-field>
           <textarea matInput rows="6" name="content" [ngModel]="post?.content" required placeholder="Post Content" #content="ngModel"></textarea>
           <mat-error *ngIf="content.invalid">Please Enter a Post Content</mat-error>

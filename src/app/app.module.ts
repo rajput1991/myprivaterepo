@@ -6,8 +6,6 @@ import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
 
-
-
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,11 +13,14 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { PostService } from './posts/post.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AppPage } from '../../e2e/src/app.po';
 import { AppRoutingModule } from './app-routing-module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { DashBoardComponent } from './dashboard/dashboard-component';
+import { SubHeaderComponent } from './dashboard/subheader/sub-header.component';
+import { AppCommonModule } from './core/common.module';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,10 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HeaderComponent,
     PostListComponent,
     LoginComponent,
-    SignUpComponent
+    SignUpComponent,
+    DashBoardComponent,
+    SubHeaderComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,15 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     MatToolbarModule,
     MatExpansionModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    AppCommonModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCxhPK7U85dd2waazHcPyC-E9Z6lyH_4ow'
+      /* apiKey is required, unless you are a
+      premium customer, in which case you can
+      use clientId
+      */
+    })
 
   ],
   providers: [PostService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],

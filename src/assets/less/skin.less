@@ -1,0 +1,224 @@
+
+.skin-blue-light {
+  //Navbar
+  .main-header {
+    .navbar {
+      .navbar-variant(@primary-color; #fff);
+      .sidebar-toggle {
+        color: #fff;
+        &:hover {
+          background-color: darken(@primary-color, 5%);
+        }
+
+        &:focus {
+          background-color: darken(@primary-color, 5%);
+        }        
+      }
+      @media (max-width: @screen-header-collapse) {
+        .dropdown-menu {
+          li {
+            &.divider {
+              background-color: rgba(255, 255, 255, 0.1);
+            }
+            a {
+              color: #fff;
+              &:hover {
+                background: darken(@primary-color, 5%);
+              }
+             
+            }
+          }
+        }
+      }
+    }
+    //Logo
+    .logo {
+      .logo-variant(@primary-color);
+      &:hover {
+        //background-color: darken(@primary-color, 5%);
+      }
+    }
+
+    li.user-header {
+      background-color: @primary-color;
+    }
+  }
+
+  .sidebar-menu {
+
+    li.active a, 
+    li a:focus  {
+                    
+                color: #fff !important;
+                background: darken(@primary-color, 5%) !important;
+              
+    }
+  }
+  //Content Header
+  .content-header {
+    background: transparent;
+  }
+
+.form-control input,
+.form-control select {
+  color:#000;
+}
+  //Create the sidebar skin
+  .skin-light-sidebar(@primary-color);
+  .main-footer {
+    border-top-color: @gray;
+  }
+
+  .main-footer {
+    background: #393A3A;
+    color:#fff;
+  }
+
+  .welcome {
+    color:#fff;
+    padding-top:15px;
+  }  
+}
+
+.skin-blue.layout-top-nav .main-header > .logo {
+  .logo-variant(@primary-color);
+}
+
+.mui-search label {
+  text-align:right;
+  padding-top:5px;
+}
+
+.rowSelected {
+	background: #ddf3ff !important;
+}
+
+.rowSelected {
+  a {
+    color:#010101 !important;
+  }  
+}
+
+.elFocused, .rowFocused {
+	background:#60798d !important;
+  color:#fff !important;  
+
+}
+
+.rowFocused {
+  a {
+    color:#fff !important;
+
+    &:focus {
+      	color:#60798d !important;
+        background:#fff !important;
+    }
+  }  
+}
+
+th {
+	border-top:none;
+	background:#f5f5f5;
+	border: 1px solid #b2b2b2;
+	font-size:18px;
+	font-weight: 700;
+	vertical-align: bottom;
+	padding:6px;
+}
+
+.paginator {
+	border-top : 1px solid #ddd;
+	margin:5px;
+	padding:15px 0;
+}
+
+.paginator .pager {
+	text-align:right;
+	margin:0;
+	color:#383838;
+}
+
+.pagination li.active-custom a {
+  background: #9a969a;
+  font-weight: bold;
+  color: black;
+}
+
+.not-active {
+  pointer-events: none;
+  cursor: default;
+}
+
+.pager button {
+	border-radius:15px;
+}
+
+.popoverInfo {
+  display:inline-block;
+  color:#333 !important;
+
+  :hover {
+    color:#555;
+  }
+}
+
+.popover {
+  font-family: inherit !important;
+  font-weight: normal;
+  min-width: 200px;
+}
+
+.cursor-pointer {
+  cursor:pointer !important;
+}
+
+#userOptions {
+  display:none;
+}
+#userOptions.control-sidebar-open {
+  display: block;
+}
+
+
+.dragFile {
+	padding:10px;
+	margin:0 20px;
+}
+
+.dragFileActive {
+	border:3px dashed #60798d;
+}
+
+.dragFileOver {
+	border:3px dashed darken(@brand-primary, 7%);
+  background: #fff4fa;
+}
+
+.form-group sup {color:darkred}
+
+th.sortable {
+  cursor:pointer;
+}
+
+th.sortable i {
+  display: none;
+}
+
+th.active {
+  color:#fff;
+  background-color: #60798d !important;
+}
+
+th.active i {
+  display: block;
+}
+
+table.table-sortable th.sortable {
+  min-width:110px;
+}
+
+.span-label {
+  font-weight:bold;
+}
+
+.sidebar-menu a:hover {background:#dedede !important;}

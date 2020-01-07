@@ -21,7 +21,7 @@ export class SignUpComponent
     if(form.invalid){
       return;
     }
-    this.isLoading=true;
+    this.isLoading = true;
     this.authservice.createUser(form.value.email, form.value.password);
     // check in console log by creating duplicate user to see the validation, you should get error 500 about unique user
   }
