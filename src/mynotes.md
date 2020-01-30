@@ -253,6 +253,11 @@ Authorization: Connect Right users to right posts
    a) Store list of posts in user object
    b) Store users or precisely user(who created the post) in Post object
 And we will match if userId of user who sending the request matches the user ID of the post.
+Lets implement b)
+Change the POST method of posts.js to add creater property. But how to get that ID, because we are not passing that ID but it is part of
+token.SO  we can fetch that user id from that token i.e token can be decoded.Note that jwt.verify() method in check-auth returns decoded token.
+so set that data on req. and capture posts routers.
+
 
 
 
