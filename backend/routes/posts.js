@@ -23,7 +23,7 @@ router.put('/:id',checkAuth, (req, resp, next) => {
     title: req.body.title,
     content: req.body.content
   });
-  Post.updateOne({ _id: req.params.id }, post).then(result => {
+  Post.updateOne({ _id: req.params.id ,creater:req.userData.userId}, post).then(result => {
     console.log(result);
     resp.status(200).json({ message: 'Updated successfully' });
   })
