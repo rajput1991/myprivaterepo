@@ -244,7 +244,27 @@ Missing things:
 4 . deployment
 
 ----------------------------------------------------------------------------------------------------------
---------------------------
+-------------------------------------------------
+Authorization: Connect Right users to right posts
+-------------------------------------------------
+1. We dont want to allow every user to edit or delete every post. The user who created the post should be only able to edit or delete the post.
+2. So We want to store the infomration which user created the post in my DB.
+3. Two options are there-
+   a) Store list of posts in user object
+   b) Store users or precisely user(who created the post) in Post object
+And we will match if userId of user who sending the request matches the user ID of the post.
+
+
+
+
+
+
+
+
+
+
+
+
 Error Handling: Section 10
 --------------------------
 
