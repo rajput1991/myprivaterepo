@@ -23,9 +23,17 @@ router.put('/:id',checkAuth, (req, resp, next) => {
     title: req.body.title,
     content: req.body.content
   });
+  // iF both conditions matched, then only post will be updated.Means one post cant be updated by other user.
+  // see network outgoing req. and test with  users editing the post
   Post.updateOne({ _id: req.params.id ,creater:req.userData.userId}, post).then(result => {
-    console.log(result);
-    resp.status(200).json({ message: 'Updated successfully' });
+    console.log(result); // will give nModified property to see if post updated or not . Try with both user.
+    // so use that
+    if (result.nModified > 0) {
+      resp.status(200).json({ message: 'Updated successfully' });
+    }
+    else {
+      resp.status(401).json({ message: 'Not authorized!' });
+    }
   })
 });
 
