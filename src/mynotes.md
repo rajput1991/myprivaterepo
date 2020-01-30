@@ -261,6 +261,13 @@ so we can store userId as part of our Post.
 ------
 Lets deny request for deleting and editing a post on backend if it is made by user who did not created that post.
 
+----------------
+Lets look at frontend side
+Till now , everyuser can click delete (eventhough he did not created post , though it dont delete post but click possible).
+so in post list component , we should only show buttons (Delete) for them who authenticated + creater of post. That means we need to get that user Id
+at front end as well.
+so from backend (/login) , also return userId along with token and expiry.
+
 
 
 

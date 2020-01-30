@@ -74,7 +74,10 @@ router.post("/login", (req, resp, next) => {
     console.log(token); //not printing ,it means something is failing once we sign the token and its going to catch block
     resp.status(200).json({
       token: token,
-      expiresIn: 3600 // use this at fronend
+      expiresIn: 3600, // use this at fronend
+      // u can get this user ID from token as well by decoding . But decoding token will impact our performance at frontend.and so
+      // we passing it as extra field.
+      userId: fetchedUser._id
     })
   }).catch(err => {
     console.log(err); // it will show user is not defined
