@@ -35,13 +35,15 @@ export class PostService
       return {
      title: post.title,
      content: post.content,
-     id: post._id
+        id: post._id,
+      creater: post.creater
       };
     });
     }
       ))
     .subscribe((transformposts) =>
     {
+      console.log(transformposts)
       this.posts = transformposts; //RHS is posts coming from server . Notice that no need to duplicate this as well because we cant accidently change
       //it onserver , there is no such connrection, it is http response.
 

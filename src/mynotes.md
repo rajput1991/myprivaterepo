@@ -257,6 +257,7 @@ Lets implement b)
 Change the POST method of posts.js to add creater property. But how to get that ID, because we are not passing that ID but it is part of
 token.SO  we can fetch that user id from that token i.e token can be decoded.Note that jwt.verify() method in check-auth returns decoded token.
 so set that data on req. and capture posts routers.
+so we can store userId as part of our Post.
 
 
 

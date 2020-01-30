@@ -36,12 +36,13 @@ router.post('', checkAuth,(req, res, next) => {
     title: req.body.title,
     content: req.body.content,
     // since it uses checkAuth , so we have extra data from req. object that we setting in req. object
-   // creater:
+    creater: req.userData.userId
+   // so we can store user Id as part of our post
 
   });
   // just to test if userData is coming and we are returning before saving the post , just to test
-  console.log(req.userData);
-  return res.status(200).json({});
+  //console.log(req.userData);
+  //return res.status(200).json({});
 
   post.save().then(createdPost => {
     res.status(201).json({
