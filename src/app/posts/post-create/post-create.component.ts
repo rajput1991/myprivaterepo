@@ -57,7 +57,7 @@ export class PostCreateComponent implements OnInit {
         this.postservice.getPost(this.postId).subscribe(postData =>
         { //spinner
           this.isLoading = false;
-          this.post = { id: postData._id, title: postData.title, content: postData.content };
+          this.post = { id: postData._id, title: postData.title, content: postData.content,creater: postData.creater };
         });
         // now just fill ur form with this post and handle submission
     } else{
@@ -79,7 +79,8 @@ export class PostCreateComponent implements OnInit {
       // note on value u have to acces name attribute value which you gave in HTML
       id: null,
       title: form.value.title,
-      content: form.value.content
+      content: form.value.content,
+      creater:null
     };
     this.isLoading = true;
     if(this.mode =='create'){

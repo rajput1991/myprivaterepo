@@ -63,7 +63,7 @@ export class PostService
     // note once adding a post , we are  setting id null explicitly
     // so if u add a post and delete , it will be gone from frontend but again u reload app ,it will come it is issue.
     // notice we are not using id which is generated at db server side
-    const post: Post = { id: null, title: title, content: content };
+    const post: Post = { id: null, title: title, content: content,creater:null };
 
     this.http.post<{ message: string, postId: string }>('http://localhost:3000/api/posts', post).subscribe((responseData) =>
     {
@@ -86,7 +86,7 @@ export class PostService
     // we will return new cloned object here
     // pull out all property of object and add them to new object , so that u dont manipulate original object
    // return { ...this.posts.find(p => p.id == id) };
-    return this.http.get<{_id: string,title: string, content: string}>('http://localhost:3000/api/posts/' + id);
+    return this.http.get<{_id: string,title: string, content: string,creater:string}>('http://localhost:3000/api/posts/' + id);
     // notice we wont subscribe here and will subscribe in Post create component
   }
   updatePost(id:string, title:string, content:string)
@@ -94,7 +94,8 @@ export class PostService
   const post: Post={
     id:id,
     title: title,
-    content:content
+    content: content,
+    creater: null
     }
     //notice put takes payload unlike DELETE
     this.http.put('http://localhost:3000/api/posts/' + id, post).subscribe((response) =>

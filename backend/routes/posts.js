@@ -21,7 +21,8 @@ router.put('/:id',checkAuth, (req, resp, next) => {
   const post = new Post({
     _id: req.body.id,
     title: req.body.title,
-    content: req.body.content
+    content: req.body.content,
+    creater: req.userId.userId
   });
   // iF both conditions matched, then only post will be updated.Means one post cant be updated by other user.
   // see network outgoing req. and test with  users editing the post
