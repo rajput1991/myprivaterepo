@@ -56,6 +56,7 @@ import { AgmCoreModule } from '@agm/core';
     })
 
   ],
+
   providers: [PostService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })

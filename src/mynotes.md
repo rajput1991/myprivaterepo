@@ -58,7 +58,7 @@ but before we do that, I want to manipulate the request or the response to be pr
 -----------------------------------------------------------------
 Database:
 1. We need to persist data on app reload ,so db is needed.
-2. Why dont we directly connect angular to mongodb by surpassing node express app.? It is technically possible.
+2. Why dostt we directly connect angular to mongodb by surpassing node express app.? It is technically possible.
 But it is highly inscure and secure authentication is not possible. We need credential for login into DB and if we do same in
 angular front end, it can be seen in browser as native JS.
 So directly connecting angular and DB is not a good idea . Instead we will send an http request to node and node has all credentials details which users cant read
@@ -242,3 +242,39 @@ Missing things:
 2. Error Handling
 3. Autorization : Conencting right post to right user
 4 . deployment
+
+----------------------------------------------------------------------------------------------------------
+--------------------------
+Error Handling: Section 10
+--------------------------
+
+
+
+
+
+
+
+--------------------------
+Optimizations: Section 11
+--------------------------
+----------------------------------------------
+Deploying App or shipping your App: Section 12
+----------------------------------------------
+Till now , we had Frontend App using Angular + Backend Powered by Express/NodeJs.
+There are 2 options to deploy:
+1. Deploy two seperated Apps (FrontEnd and Backend in NodeJS/Express)
+FrontEnd: localhost:4200 and Backend: localhost:3000
+2. Deploy one combined App(FrontEnd+Backend combined) - 1 app. We have NodeJS Rest API which renders Angular App also on a special route of Rest API.
+
+Lets consider option 1.
+We need to start 2 process.
+- Angular app is just static app and it just requires static host(because Angular app does not execute server side code) capable of serving HTML,CSS, JS. Example: AWS S3, Firebase hosting etc. We just send HTTP req. via browser (HTML+Css+Js), so only static host needed.
+- On Backend side , we need some host capable of executing NodeJs code . e.g AWS EC2, EBS etc. NodeJs code is not something everyhost can execute.
+So both are in different domains (port : 4200 and port 3000) and they are not connected. So we always need cors headers settings at Backend because both app is in different domain. But if we have combined app, we can omit cors setting because one combined app(with one port).
+
+In option 2: we need a host which can exeucte NodeJs code + can serve angular app as well.
+Option 1:    CORS headers required
+option 2: NO CORS headers required
+---------
+
+
