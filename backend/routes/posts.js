@@ -79,9 +79,15 @@ router.delete('/:id',checkAuth, (req, resp, next) => {
   console.log('cominmg here ************************')
   console.log(req.params.id);
   console.log("Deleting from server side $$$$$$$$$$$$$$$$$$$$$$$$$$$$")
-  Post.deleteOne({ _id: req.params.id }).then(result => {
-   // console.log(result);
-    resp.status(200).json({ message: 'Post Deleted' });
+  Post.deleteOne({ _id: req.params.id,creater: req.userData.userId }).then(result => {
+    console.log(result);
+
+   if (result.n > 0) {
+    resp.status(200).json({ message: 'Deletting successfully' });
+  }
+  else {
+    resp.status(401).json({ message: 'Not authorized!' });
+  }
 
   });
 });
