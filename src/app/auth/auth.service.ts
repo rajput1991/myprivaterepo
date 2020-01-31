@@ -83,6 +83,9 @@ export class AuthService
       // here we storing the token in service and we want to use this token in other part of application
       // for example in postservice for certain request such as Post DELETE and PUT
       // so simply add a method here getToken because token is private property
+    }, error =>
+    {
+        this.authstatusListner.next(false);
     });
 
   }

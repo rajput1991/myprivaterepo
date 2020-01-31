@@ -278,6 +278,7 @@ solution is : return obserables in auth service and dont subscribe in this compo
 
 If you signup with credential which are taken -- error , see on console.
 If you sign up with credential which are not taken - successful sign up with no error on console.
+similarly if you enter invalid password.. spineer should go away with error on console.
 
 
 
