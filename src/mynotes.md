@@ -273,6 +273,11 @@ Error Handling: Section 10
 --------------------------
 Place 1: Just sign up and see spineer does not go away and Error on console even though signup is successfull.
 Solution: Go to createUser() in auth service and see we handling response but not error.
+Also we have set isLoading =true in signup component just before sending req. and so spinner always there.
+solution is : return obserables in auth service and dont subscribe in this component rather subscribe in signup component.
+
+If you signup with credential which are taken -- error , see on console.
+If you sign up with credential which are not taken - successful sign up with no error on console.
 
 
 

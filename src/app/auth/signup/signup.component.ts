@@ -1,14 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './signup.component.html',
   styleUrls:['./signup.component.css']
 })
-export class SignUpComponent
+export class SignUpComponent implements OnInit,OnDestroy
 {
-  isLoading=false;
+    private authStatusSub: Subscription;
+    isLoading=false;
+  ngOnDestroy(): void
+  {
+    this.authStatusSub.unsubscribe();
+  }
+
+  ngOnInit(): void
+  {
+    this.authStatusSub = this.authservice.getAuthStatusListener().subscribe(authStatus =>
+    {
+    this.isLoading = false;
+
+    });
+  }
+
   //since we already providing authservice in root ,so lets inject this
 
   constructor(public authservice: AuthService){

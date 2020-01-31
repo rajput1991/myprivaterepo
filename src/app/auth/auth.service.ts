@@ -41,13 +41,13 @@ export class AuthService
             email: email,
             password: password
         }
-        this.http.post("http://localhost:3000/api/user/signup",authData).subscribe(respponse=>{
-            console.log(respponse);
-
-        }, error =>
-        {
-            console.log(error);
-        })
+      this.http.post("http://localhost:3000/api/user/signup", authData).subscribe(() =>
+      {
+        this.router.navigate(["/"]);
+      }, error =>
+      {
+          this.authstatusListner.next(false);// pushing false value to entire app
+       })
 
     }
     // connect authservice to signupcomponent
