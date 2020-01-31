@@ -1,10 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule, MatExpansionModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatExpansionModule, MatProgressSpinnerModule, MatDialogModule } from '@angular/material';
 import { MatCardModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material';
 import { MatToolbarModule } from '@angular/material';
+
 
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
@@ -22,6 +23,7 @@ import { SubHeaderComponent } from './dashboard/subheader/sub-header.component';
 import { AppCommonModule } from './core/common.module';
 import { AgmCoreModule } from '@agm/core';
 import { ErrorInterceptor } from './error-interceptor';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { ErrorInterceptor } from './error-interceptor';
     SignUpComponent,
     DashBoardComponent,
     SubHeaderComponent,
+    ErrorComponent
 
   ],
   imports: [
@@ -44,6 +47,7 @@ import { ErrorInterceptor } from './error-interceptor';
     MatCardModule,
     MatButtonModule,
     MatToolbarModule,
+    MatDialogModule,
     MatExpansionModule,
     HttpClientModule,
     MatProgressSpinnerModule,
@@ -59,6 +63,7 @@ import { ErrorInterceptor } from './error-interceptor';
   ],
 
   providers: [PostService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[ErrorComponent]
 })
 export class AppModule { }
