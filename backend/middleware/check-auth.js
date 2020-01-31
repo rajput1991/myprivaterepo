@@ -17,7 +17,7 @@ module.exports = (req, resp, next) => {
   catch (error) {
     console.log(error);
     resp.status(401).json({
-      message: 'Auth Failed here again in checkauth '
+      message: 'You are not Authenticated '
   })
   };
 

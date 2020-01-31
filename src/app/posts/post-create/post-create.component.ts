@@ -1,9 +1,11 @@
-import { Component, EventEmitter, Output, OnInit } from "@angular/core";
+import { Component, EventEmitter, Output, OnInit, OnDestroy } from "@angular/core";
 import { Post } from '../post.model';
 import { NgForm } from '@angular/forms';
 import { constructDependencies } from '@angular/core/src/di/reflective_provider';
 import { PostService } from '../post.service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 
@@ -13,7 +15,11 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   templateUrl: "./post-create.component.html",
   styleUrls:['./post-create.component.css']
 })
-export class PostCreateComponent implements OnInit {
+export class PostCreateComponent implements OnInit,OnDestroy {
+  ngOnDestroy(): void
+  {
+    this.authStatusSub.unsubscribe();
+  }
 
   enteredContent = "";
   enteredTitle = "";
@@ -21,6 +27,7 @@ export class PostCreateComponent implements OnInit {
   private postId: string;
    post: Post; // u can access this in its html in ngmodel since it public
   isLoading = false;
+  private authStatusSub: Subscription;
   //Now it can emit only Post
  //@Output() postCreated = new EventEmitter<Post>();
   // onAddPost(postInput: HTMLTextAreaElement) {
@@ -29,7 +36,7 @@ export class PostCreateComponent implements OnInit {
   //   console.log(postInput.value);
   //   this.newPost = postInput.value;
   // }
-  constructor(public postservice: PostService, public route: ActivatedRoute)
+  constructor(public postservice: PostService, public route: ActivatedRoute,private authService: AuthService)
   {
   // This Activated route will give us information of current router and by router we can decide whether it is edit or create post
     // but better use ngOnInit for getting route info and see if it has postid or not
@@ -46,6 +53,10 @@ export class PostCreateComponent implements OnInit {
 //but angular avoids the unnecessary re-rendering of the entire component which is, well
 //which really doesn't make a lot of sense because it's still the same component,
 //we just need to know about the change
+    this.authStatusSub = this.authService.getAuthStatusListener().subscribe(authStatus =>
+    {
+      this.isLoading = false;
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) =>
     {
       if (paramMap.has('postId')) {

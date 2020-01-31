@@ -14,7 +14,11 @@ router.get('/:id', (req, resp, next) => {
     else {
       resp.status(404).json({ message: 'Post not found' });
     }
-  })
+  }).catch(error => {
+    res.status(500).json({
+      message:'Fetching Post failed.'
+    })
+  });
 
 });
 router.put('/:id',checkAuth, (req, resp, next) => {
@@ -35,7 +39,12 @@ router.put('/:id',checkAuth, (req, resp, next) => {
     else {
       resp.status(401).json({ message: 'Not authorized!' });
     }
-  })
+  }).catch(error => {
+    // e..e.g db connection lost because of that post could not updated.
+    res.status(500).json({
+      message:'Could not update post.'
+    })
+  });
 });
 
 // adding creater property too
@@ -58,9 +67,14 @@ router.post('', checkAuth,(req, res, next) => {
       message: "Post added succesfully",
       postId: createdPost._id
     })
+  }).catch(error => {
+    res.status(500).json({
+      message:'Creating a Post failed.'
+    })
   });
 
 });
+
 router.get('', (req, resp, next) => {
  const posts = [
     { id: '484n349nd', title: 'Firsts server side Post', content: 'This is coming from server' },
@@ -73,6 +87,10 @@ router.get('', (req, resp, next) => {
         message: 'Posts fetched successfully',
         posts: documents
       });
+    }).catch(error => {
+      res.status(500).json({
+        message:'Fetching posts failed.'
+      })
     });
 });
 
@@ -90,6 +108,10 @@ router.delete('/:id',checkAuth, (req, resp, next) => {
     resp.status(401).json({ message: 'Not authorized!' });
   }
 
+  }).catch(error => {
+    res.status(500).json({
+      message:'Deleting Post failed.'
+    })
   });
 });
 module.exports = router;
