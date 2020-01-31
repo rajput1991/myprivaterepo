@@ -268,22 +268,11 @@ so in post list component , we should only show buttons (Delete) for them who au
 at front end as well.
 so from backend (/login) , also return userId along with token and expiry.
 
--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Error Handling: Section 10
 --------------------------
+Place 1: Just sign up and see spineer does not go away and Error on console even though signup is successfull.
+Solution: Go to createUser() in auth service and see we handling response but not error.
 
 
 
