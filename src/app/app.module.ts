@@ -21,6 +21,7 @@ import { DashBoardComponent } from './dashboard/dashboard-component';
 import { SubHeaderComponent } from './dashboard/subheader/sub-header.component';
 import { AppCommonModule } from './core/common.module';
 import { AgmCoreModule } from '@agm/core';
+import { ErrorInterceptor } from './error-interceptor';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,7 @@ import { AgmCoreModule } from '@agm/core';
 
   ],
 
-  providers: [PostService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
+  providers: [PostService, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },{provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
