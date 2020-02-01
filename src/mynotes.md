@@ -312,5 +312,6 @@ In option 2: we need a host which can exeucte NodeJs code + can serve angular ap
 Option 1:    CORS headers required
 option 2: NO CORS headers required
 ---------
-
+lets move server.js in backend folder so that all backend things are in single folder backend.
+Also copy package.json to backend and keep in both project
 

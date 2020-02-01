@@ -12,7 +12,7 @@
 // // --------------------------
 // // Lets use express js framework for node js which makes node js developement easier.
 // // install it using npm install --save express
-const app = require("./backend/app");
+const app = require("./app");
 const debug = require("debug")("node-angular");
 const http = require("http");
 
