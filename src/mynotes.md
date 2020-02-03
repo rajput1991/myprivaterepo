@@ -618,4 +618,10 @@ entire folder which contains the image folder
 and now again, we got a working application.
 -------------------------------------------------------------------------------------------------------
 
+Remaining:
+---------
+Optimizations:
+Image Upload
+Pagination:
+
 
