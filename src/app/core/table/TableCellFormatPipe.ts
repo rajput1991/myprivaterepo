@@ -3,7 +3,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TableCellFormatPipe implements PipeTransform {
     transform(value: any) {
         if ( value === undefined ) {
-            return 'Not Available';
+          //  return 'Not Available';
+          return ' ';
         }
         return value;
     }

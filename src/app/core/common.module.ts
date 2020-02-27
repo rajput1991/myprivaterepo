@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { DatePickerComponent } from './datepicker/datepicker.component';
 import { SideNavigationPanelComponent } from './sidenavpanel/side.navigation.panel';
 import { SideNavigationPanelSvc } from './sidenavpanel/sidenavigationpanelsvc';
+import { TemplateGeneratorComponent } from './devops/template-generator.component';
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [
@@ -29,6 +30,7 @@ import { SideNavigationPanelSvc } from './sidenavpanel/sidenavigationpanelsvc';
     LineChartComponent,
     DatePickerComponent,
     SideNavigationPanelComponent,
+    TemplateGeneratorComponent
   ],
   exports: [
     CommonModule,
@@ -44,6 +46,7 @@ import { SideNavigationPanelSvc } from './sidenavpanel/sidenavigationpanelsvc';
     LineChartComponent,
     DatePickerComponent,
     SideNavigationPanelComponent,
+    TemplateGeneratorComponent
     // SideNavigationPanelSvc
   ]
 })

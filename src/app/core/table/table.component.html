@@ -1,14 +1,28 @@
-<table class="table">
-    <thead>
-        <tr>
-            <!-- <th *ngFor="let map of columnMaps"> {{ map.header }} </th> -->
-            <th *ngFor="let map of columnMapsData"> {{ map.header }} </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let record of records">
-            <!-- <td *ngFor="let map of columnMaps"  [tablecellstyle] ="record[map.primaryKey]">{{ record[map.primaryKey] | formatCell  }}</td> -->
-            <td *ngFor="let map of columnMapsData"  [tablecellstyle] ="record[map.access(record)]">{{ record[map.access(record)] | formatCell  }}</td>
-        </tr>
-    </tbody>
+<caption>{{ settings.label }}</caption>
+<table class="table" id="empTable">
+
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th *ngFor="let header of settings.headers;let k=index"> {{ header }} </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let record of settings.defaultRow;let i=index">
+      <td (click)="deleteRow(i)">
+        <button class='btn btn-danger btn-sm delete'>X</button>
+      </td>
+      <td contenteditable='true'  *ngFor="let item of record | keyvalue">
+        {{item.value}}
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <button (click)="addRow()" class='btn btn-success btn-sm'>+</button>
+        <button (click)="somecontrol(settings.defaultRow)" class='btn btn-success btn-sm'>submit</button>
+      </td>
+    </tr>
+
+  </tbody>
+
 </table>

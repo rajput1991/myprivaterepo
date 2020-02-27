@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignUpComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DashBoardComponent } from './dashboard/dashboard-component';
+import { TemplateGeneratorComponent } from './core/devops/template-generator.component';
 
 //empty path means root page
 const routes: Routes = [
@@ -14,8 +15,8 @@ const routes: Routes = [
   { path: 'edit/:postId', component: PostCreateComponent , canActivate: [AuthGuard]},
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignUpComponent },
-  { path: 'dashboard', component: DashBoardComponent },
-  { path: 'orchestration', component: DashBoardComponent },
+  { path: 'dashboard', component: TemplateGeneratorComponent },
+  { path: 'orchestration', component: TemplateGeneratorComponent },
 
   // notice Postcreatecomponent now will be loaded for different paths , one for save and one for edit
 

@@ -1,21 +1,35 @@
-export class TableCommonSetting {
+export class TableMetaData {
 
-    primaryKey: string;
-    header?: string;
-    format?: string;
-    alternativeKeys?: string[];
+  headers: string[];
+  label?: string;
+  defaultRow?: any [];
+
 }
+
 
 export class ColumnMap {
   primaryKey: string;
   private _header: string;
   private _format: string;
   alternativeKeys?: string[];
-constructor ( settings ) {
-      this.primaryKey = settings.primaryKey;
-      this.header = settings.header;
-      this.format = settings.format;
-      this.alternativeKeys = settings.alternativeKeys;
+  label?: string;
+  defaultRow?: object;
+  metaData: TableMetaData;
+
+ // defaultData: object;
+  constructor(metadata: TableMetaData )
+  {  console.log('----- This is meta data---')
+    //console.dir(metadata.headers);
+     // this.primaryKey = metadata.headers[0].primaryKey;
+      //this._header = metadata.headers[0].header;
+    //this.format = metadata.headers[0].format;
+    this.metaData = metadata;
+
+
+  //this.defaumetadata.defaultRow;
+  //this.label = metadata.label;
+
+      //this.defaultData = settings.defaultData;
   }
   set header(setting: string) {
       this._header = setting ?

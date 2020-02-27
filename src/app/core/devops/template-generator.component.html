@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="navbar-text"> Hosting Enviornment: <app-select [options]="hostenviorments"
+        (onSelect)="onSelect($event)"></app-select>
+    </div>
+    <div class="navbar-text"> Template Type: <app-select [options]="templateTypes"></app-select>
+    </div>
+    <button (click)="buildTemplate(PROJECTS)" class="btn  btn-primary btn-md" type="button">Build</button>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!--myNetworkSettings -->
+      <app-table  [settings]="apiResources" (tableDataChange)="tablechanged(data)">
+      </app-table>
+    </div>
+  </div>
+  <button (click)="buildTemplate(PROJECTS)" class="btn  btn-dark btn-md" type="button">Build</button>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="servers" [settings]="myServerSettings" [caption]="'NODES'">
+      </app-table> -->
+    </div>
+  </div>
+  <button (click)="buildTemplate(servers)" class="btn  btn-dark btn-md" type="button">Build</button>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="PROJECTS" [settings]="myFloatingPointIPSettings" [caption]="'FLOATING POINT IP'">
+      </app-table> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="PROJECTS" [settings]="myPortSettings" [caption]="'PORT'">
+      </app-table> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="PROJECTS" [settings]="mySubnetSettings" [caption]="'SUBNETS'">
+      </app-table> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="PROJECTS" [settings]="myrouterInterfaceSettings" [caption]="'ROUTER INTERFACE'">
+      </app-table> -->
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <!-- <app-table [records]="PROJECTS" [settings]="mycinderVolumesSettings" [caption]="'CINDER VOLUMES'">
+      </app-table> -->
+    </div>
+  </div>
+</div>

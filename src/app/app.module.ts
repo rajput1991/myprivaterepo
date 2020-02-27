@@ -35,7 +35,7 @@ import { ErrorComponent } from './error/error.component';
     SignUpComponent,
     DashBoardComponent,
     SubHeaderComponent,
-    ErrorComponent
+    ErrorComponent,
 
   ],
   imports: [

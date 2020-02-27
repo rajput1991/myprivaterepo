@@ -1,5 +1,5 @@
 <div>
-<select [(ngModel)]="selectedOption" (ngModelChange)="OnSelect($event)" style="border: none; font: 16px arial, sans-serif; color: #01a982; background-color: black;">
+<select [(ngModel)]="selectedOption" (ngModelChange)="OnSelect($event)">
 <option  *ngFor="let option of options" [ngValue]="option">{{option.name}}</option>
 </select>
 </div>
