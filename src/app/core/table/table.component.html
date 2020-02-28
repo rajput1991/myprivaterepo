@@ -1,5 +1,5 @@
 <caption>{{ settings.label }}</caption>
-<table class="table" id="empTable">
+<table *ngIf="settings" class="table" id="datatable">
 
   <thead>
     <tr>
@@ -12,14 +12,14 @@
       <td (click)="deleteRow(i)">
         <button class='btn btn-danger btn-sm delete'>X</button>
       </td>
-      <td contenteditable='true'  *ngFor="let item of record | keyvalue">
+      <td contenteditable='true' *ngFor="let item of record | keyvalue: originalOrder">
         {{item.value}}
       </td>
     </tr>
     <tr>
       <td>
         <button (click)="addRow()" class='btn btn-success btn-sm'>+</button>
-        <button (click)="somecontrol(settings.defaultRow)" class='btn btn-success btn-sm'>submit</button>
+        <button (click)="push()" class='btn btn-success btn-sm'>PUSH</button>
       </td>
     </tr>
 

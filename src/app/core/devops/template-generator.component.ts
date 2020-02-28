@@ -38,15 +38,15 @@ export class TemplateGeneratorComponent {
       "shared",
       "tenant_id"
     ],
-    label: 'Networksdue',
+    label: 'NETWORKS',
     defaultRow: [{
-      id: 1,
-      admin_state_update: "MGMT",
-      dns_domain: "NET1",
-      name: "true",
-      port_security_enabled: "hpe.corp",
+      id: "1",
+      admin_state_update: "No",
+      dns_domain: "hpe.corp",
+      name: "NET1",
+      port_security_enabled: "false",
       qos_policy: "NA",
-      shared: "MGMT_NET",
+      shared: "No",
       tenant_id: "TAS"
     }]
   };
@@ -54,10 +54,11 @@ export class TemplateGeneratorComponent {
 
 
   hostenviorments: Option[] = [
-    { id: "0", name: "OpenStack" },
-    { id: "1", name: "AWS" },
-    { id: "2", name: "AZURE" },
-    { id: "3", name: "GCP" }
+    { id: "0", name: "None" },
+    { id: "1", name: "OpenStack" },
+    { id: "2", name: "AWS" },
+    { id: "3", name: "AZURE" },
+    { id: "4", name: "GCP" }
   ];
   templateTypes: Option[] = [
     { id: "0", name: "ansible" },
@@ -227,7 +228,9 @@ export class TemplateGeneratorComponent {
     // alert("coming");
   }
 
-  buildTemplate(resources) {
+  buildTemplate(resources)
+  {
+    console.dir(resources);
     const templateVersion = 'heat_template_version: 2015-04-30';
     const resourceType = 'OS:: Neutron:: Net';
     const n0 = '\n';
