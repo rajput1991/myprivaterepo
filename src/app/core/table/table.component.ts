@@ -26,7 +26,7 @@ export class TableComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {}
   addRow() {
-    this.settings.defaultRow.push(
+    this.settings.series.push(
       this.settings.headers.reduce(function(acc, curr) {
         acc[curr] = '';
         return acc;
@@ -37,24 +37,31 @@ export class TableComponent implements OnChanges, OnInit {
   push() {
     const table = document.getElementById('datatable') as HTMLTableElement;
     const rowCount = table.rows.length;
-    for (let j = 1; j <= this.settings.defaultRow.length; j++) {
+    alert(rowCount);
+    alert(this.settings.series.length);
+
+    for (let j = 0; j < this.settings.series.length; j++) {
       const oCells = table.rows[j].cells;
+      console.dir(oCells);
       const resource = {};
-      Object.keys(this.settings.defaultRow[0]).forEach(function(value, i) {
+      this.settings.headers.forEach(function (value, i)
+      {
+
+        console.log(value + "==" + i+"==="+ oCells.item(i + 1));
         resource[value] = oCells.item(i + 1).innerHTML;
       });
       console.dir('Row Object is' + resource);
-      this.settings.defaultRow[j - 1] = resource;
+      this.settings.series[j] = resource;
     }
   }
 
   deleteRow(index) {
-    if (this.settings.defaultRow.length === 1) {
+    if (this.settings.series.length === 1) {
       alert('Can\'t delete this row , as it is default data!');
       return false;
     } else {
       alert('this is index' + index);
-      this.settings.defaultRow.splice(index, 1);
+      this.settings.series.splice(index, 1);
       alert('Row deleted successfully!');
       return true;
     }

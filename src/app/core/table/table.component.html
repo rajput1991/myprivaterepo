@@ -1,4 +1,4 @@
-<caption>{{ settings.label }}</caption>
+<caption>{{ settings.metadata.label }}</caption>
 <table *ngIf="settings" class="table" id="datatable">
 
   <thead>
@@ -8,7 +8,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let record of settings.defaultRow;let i=index">
+    <tr *ngFor="let record of settings.series;let i=index">
       <td (click)="deleteRow(i)">
         <button class='btn btn-danger btn-sm delete'>X</button>
       </td>
@@ -18,8 +18,8 @@
     </tr>
     <tr>
       <td>
-        <button (click)="addRow()" class='btn btn-success btn-sm'>+</button>
-        <button (click)="push()" class='btn btn-success btn-sm'>PUSH</button>
+        <button style="margin-right: 5px" (click)="addRow()" class='btn btn-success btn-sm'>+</button>
+        <button style="margin-right: 5px" (click)="push()" class='btn btn-dark btn-sm'>PUSH</button>
       </td>
     </tr>
 

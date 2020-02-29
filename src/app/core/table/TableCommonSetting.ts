@@ -1,5 +1,5 @@
 export class TableMetaData {
   headers: string[];
-  label?: string;
-  defaultRow?: any[];
+  metadata: object;
+  series?: any[];
 }

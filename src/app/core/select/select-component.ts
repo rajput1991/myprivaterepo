@@ -10,6 +10,8 @@ export class SelectComponent implements OnInit
 {
   @Input()
   options: Option[];
+  @Input()
+  label: string;
   @Output()
   selectedOption: Option;
   @Output() onSelect = new EventEmitter<any>();
@@ -19,10 +21,10 @@ export class SelectComponent implements OnInit
   }
   OnSelect(selectedOption: Option)
   {
-    alert("emmiting event");
+    //alert("emmiting event");
     this.onSelect.emit(event);
    // this.onSelect.emit(selectedOption);
-    alert("post emitting event");
+   // alert("post emitting event");
     console.log('---Selected dropdown Object id is:' + selectedOption.id + ' and value is:' + selectedOption.name);
   }
 }
