@@ -7,7 +7,7 @@
     </div>
     <!-- <button (click)="buildTemplate(PROJECTS)" class="btn  btn-primary btn-md" type="button">Build</button> -->
   </div>
-  <div *ngFor="let resource of apiResources">
+  <div *ngFor="let resource of apiResources, let k=index">
   <div class="row" >
     <div class="col-md-12" >
       <!--myNetworkSettings -->
@@ -17,6 +17,9 @@
       <button style="margin-right: 10px" (click)="buildTemplate(resource)" class="btn  btn-dark btn-sm" type="button">Build</button>
       <button style="margin-right: 10px" (click)="help(resource)" class="btn  btn-info btn-sm" type="button">Help</button>
       <button style="margin-right: 10px" (click)="clearData(resource)" class="btn  btn-warning btn-sm" type="button">Clear</button>
+      <p *ngIf="enableHelp">
+      <text-area [dataTodisplay]="enableHelp" style="margin-top: 8px;" readonly rows="10" cols="150" id="userArea"></text-area>
+      </p>
     </div>
   </div>
 </div>

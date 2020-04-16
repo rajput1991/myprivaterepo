@@ -15,6 +15,7 @@ import { DatePickerComponent } from './datepicker/datepicker.component';
 import { SideNavigationPanelComponent } from './sidenavpanel/side.navigation.panel';
 import { SideNavigationPanelSvc } from './sidenavpanel/sidenavigationpanelsvc';
 import { TemplateGeneratorComponent } from './devops/template-generator.component';
+import { TextAreaComponent } from './textarea/textarea.component';
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [
@@ -30,7 +31,8 @@ import { TemplateGeneratorComponent } from './devops/template-generator.componen
     LineChartComponent,
     DatePickerComponent,
     SideNavigationPanelComponent,
-    TemplateGeneratorComponent
+    TemplateGeneratorComponent,
+    TextAreaComponent
   ],
   exports: [
     CommonModule,
@@ -46,7 +48,8 @@ import { TemplateGeneratorComponent } from './devops/template-generator.componen
     LineChartComponent,
     DatePickerComponent,
     SideNavigationPanelComponent,
-    TemplateGeneratorComponent
+    TemplateGeneratorComponent,
+    TextAreaComponent
     // SideNavigationPanelSvc
   ]
 })

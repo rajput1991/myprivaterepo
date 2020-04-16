@@ -1,5 +1,5 @@
 <caption>{{ settings.metadata.label }}</caption>
-<table *ngIf="settings" class="table" id=$(settings.label)>
+<table *ngIf="settings" class="table" id="{{settings.metadata._id}}">
 
   <thead>
     <tr>
@@ -19,7 +19,7 @@
     <tr>
       <td>
         <button style="margin-right: 5px" (click)="addRow()" class='btn btn-success btn-sm'>+</button>
-        <button style="margin-right: 5px" (click)="push()" class='btn btn-dark btn-sm'>PUSH</button>
+        <button style="margin-right: 5px" (click)="push()" class='btn btn-dark btn-sm'>SUBMIT</button>
       </td>
     </tr>
 

@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef } from '@angular/core';
 import { TableMetaData } from '../table/TableCommonSetting';
 import { Option } from '../select/Option.wrapper';
+import { DOCUMENT } from '@angular/platform-browser';
 
 
 @Component({
@@ -10,7 +11,10 @@ import { Option } from '../select/Option.wrapper';
   styleUrls: ['./template-generator.component.css']
 })
 export class TemplateGeneratorComponent {
+  enableHelp: boolean = false;
   apiResources: TableMetaData[];
+  dataTodisplay;
+
   hostenviorments: Option[] = [
     { id: '0', name: 'None' },
     { id: '1', name: 'OpenStack' },
@@ -41,8 +45,8 @@ export class TemplateGeneratorComponent {
           'shared',
           'tenant_id'
         ],
-        metadata: {label:'NETWORKS', resource:'OS::Neutron::Net'},
-        series: [  {
+        metadata: { _id: '0', label: 'NETWORKS', resource: 'OS::Neutron::Net' },
+        series: [{
           id: '1',
           admin_state_update: 'No',
           dns_domain: 'hpe.corp',
@@ -55,26 +59,26 @@ export class TemplateGeneratorComponent {
       },
       {
         headers: [
-            'admin_pass',
-            'availability_zone',
-            'diskConfig',
-            'flavor',
-            'flavor_update_policy',
-            'image',
-            'image_update_policy',
-            'key_name',
-            'name',
-            'networks',
-           'personality',
-            'security_groups',
-            'user_data',
-            'user_data_format',
-            'user_data_update_policy'
-          ],
-          metadata: {label:'SERVERS/NODES', resource:'OS::Nova::Server'},
-          series: [{
+          'admin_pass',
+          'availability_zone',
+          'diskConfig',
+          'flavor',
+          'flavor_update_policy',
+          'image',
+          'image_update_policy',
+          'key_name',
+          'name',
+          'networks',
+          'personality',
+          'security_groups',
+          'user_data',
+          'user_data_format',
+          'user_data_update_policy'
+        ],
+        metadata: { _id: '1', label: 'SERVERS/NODES', resource: 'OS::Nova::Server' },
+        series: [{
           admin_pass: '1',
-          availability_zone:'nova',
+          availability_zone: 'nova',
           diskConfig: 'No',
           flavor: 'hpe.corp',
           flavor_update_policy: 'NET1',
@@ -90,28 +94,28 @@ export class TemplateGeneratorComponent {
           user_data_update_policy: 'TAS',
 
         }]
-      },{
-        headers:  [
+      }, {
+        headers: [
           'allocation_pools',
-           'cidr',
-           'dns_nameservers',
-           'enable_dhcp',
-           'gateway_ip',
-           'ip_version',
-           'name',
-           'network',
-           'segment',
-           'subnetpool',
-           'tenant_id'
-         ],
-         metadata: {label:'SUBNETS', resource:'OS::Neutron::Subnet'},
-         series: [{
+          'cidr',
+          'dns_nameservers',
+          'enable_dhcp',
+          'gateway_ip',
+          'ip_version',
+          'name',
+          'network',
+          'segment',
+          'subnetpool',
+          'tenant_id'
+        ],
+        metadata: { _id: '2', label: 'SUBNETS', resource: 'OS::Neutron::Subnet' },
+        series: [{
           allocation_pools: '1',
           cidr: 'No',
           dns_nameservers: 'hpe.corp',
           enable_dhcp: 'NET1',
           gateway_ip: 'false',
-          ip_version:'0',
+          ip_version: '0',
           name: 'NA',
           network: 'No',
           segment: 'TAS',
@@ -119,22 +123,22 @@ export class TemplateGeneratorComponent {
           tenant_id: 'TAS',
 
         }]
-      },{
+      }, {
         headers: [
           'admin_state_up',
-           'binding:vnic_type',
-           'device_id',
-           'device_owner',
-           'dns_name',
-           'mac_address',
-           'name',
-           'network',
-           'port_security_enabled',
-           'qos_policy',
-           'security_groups'
-         ],
-         metadata: {label:'PORTS', resource:'OS::Neutron::Port'},
-         series: [{
+          'binding:vnic_type',
+          'device_id',
+          'device_owner',
+          'dns_name',
+          'mac_address',
+          'name',
+          'network',
+          'port_security_enabled',
+          'qos_policy',
+          'security_groups'
+        ],
+        metadata: { _id: '3', label: 'PORTS', resource: 'OS::Neutron::Port' },
+        series: [{
           admin_state_up: '1',
           binding_vnic_type: 'No',
           device_id: 'hpe.corp',
@@ -145,11 +149,11 @@ export class TemplateGeneratorComponent {
           network: 'TAS',
           port_security_enabled: 'No',
           qos_policy: 'TAS',
-          security_groups:'default'
+          security_groups: 'default'
 
         }]
-      },{
-        headers:[
+      }, {
+        headers: [
           'dns_domain',
           'dns_name',
           'fixed_ip_address',
@@ -158,7 +162,7 @@ export class TemplateGeneratorComponent {
           'floating_subnet',
           'port_id'
         ],
-        metadata: {label:'FLOATING IP', resource:'OS::Neutron::FloatingIP'},
+        metadata: { _id: '4', label: 'FLOATING IP', resource: 'OS::Neutron::FloatingIP' },
         series: [{
           dns_domain: '1',
           dns_name: 'No',
@@ -168,8 +172,8 @@ export class TemplateGeneratorComponent {
           floating_subnet: 'No',
           port_id: 'TAS'
         }]
-      },{
-        headers:[
+      }, {
+        headers: [
           'availability_zone',
           'description',
           'image',
@@ -181,8 +185,8 @@ export class TemplateGeneratorComponent {
           'snapshot_id',
           'volume_type'
         ],
-       metadata: {label:'CINDER VOLUMES', resource:'OS::Cinder::Volume'},
-       series: [{
+        metadata: { _id: '5', label: 'CINDER VOLUMES', resource: 'OS::Cinder::Volume' },
+        series: [{
           availability_zone: '1',
           description: 'No',
           image: 'hpe.corp',
@@ -222,20 +226,63 @@ export class TemplateGeneratorComponent {
     // alert("coming");
   }
 
-  buildTemplate(data)
-  {
 
+  buildTemplate(data) {
 
-    const templateVersion = 'heat_template_version: 2015-04-30';
+    alert(data.series.length);
+    const templateVersion = 'heat_template_version: 2015-04-30'
+
 
     const resourceType = data.metadata.resource;
     const n0 = '\n';
     let template;
+    template += n0 + "description: '" + "'";
+    template += n0 + "parameters:";
+    template += n0 + "  NetworkRoot:";
+    template += n0 + "    type: string";
+    template += n0 + "    label: Private network";
+    template += n0 + "    description: 3 dot separated bytes defining the 24 first bits of the internal networks, e.g. 192.168.100";
+    template += n0 + "    default: 192.168.100";
+    template += n0 + "  Image:";
+    template += n0 + "    type: string";
+
+    template += n0 + "    default: tas.qcow2";
+    template += n0 + "  ExternalNetwork:";
+    template += n0 + "    type: string";
+    template += n0 + "    description: The name of the external public network used to connect floating IPs";
+    template += n0 + "    default: ext-net";
+    template += n0 + "  AvailabilityZone:";
+    template += n0 + "    type: string";
+    template += n0 + "    label: Availability zone";
+    template += n0 + "    description: The name of the zone hosting the MSE nodes";
+    template += n0 + "    default: nova";
+    template += n0 + "  flavorStandard:";
+    template += n0 + "    type: string";
+    template += n0 + "    description: The name of the openstack flavor used to build the SEE Application nodes";
+    template += n0 + "    default: ";
+    template += n0 + "  flavorPerformance:";
+    template += n0 + "    type: string";
+    template += n0 + "    description: The name of the openstack flavor used to build the OCMP nodes";
+    template += n0 + "    default: ";
+    template += n0 + "  flavorSmall:";
+    template += n0 + "    type: string";
+    template += n0 + "    description: The name of the openstack flavor used to build the other nodes";
+    template += n0 + "    default: ";
+    template += n0 + "  key_name:";
+    template += n0 + "    type: string";
+    template += n0 + "    description: the ssh key injected in the instances for remote access";
+    template += n0 + "    default: ''";
+    template += n0 + "  VolumeSize:";
+    template += n0 + "    type: number";
+    template += n0 + "    description: The size in Gb of the volumes attached to the nodes.";
+    template += n0 + "    default: 20";
+
+    template += n0;
+    template += n0 + "resources:";
     // tslint:disable-next-line: only-arrow-functions
-    data.series.forEach(function (element, i)
-    {
+    data.series.forEach(function (element, i) {
       console.log('------ RESOURCE START ------');
-      template = templateVersion;
+      //  template = templateVersion;
       template += n0 + '  type: ' + resourceType;
       // tslint:disable-next-line:align
       template += n0 + '  properties:';
@@ -247,15 +294,24 @@ export class TemplateGeneratorComponent {
       console.log('------ RESOURCE END  ------');
     });
   }
-  help()
-  {
-    alert("Coming soon");
+  userOutput(aText) {
+    if (document.getElementById("userArea"))
+      document.getElementById("userArea").innerHTML = aText;
   }
-  clearData(resource)
-  {
-    if (window.confirm('Do you want to erase all data...?')) {
-      resource.series = [];
+
+  help(resource) {
+    
+    this.enableHelp = !this.enableHelp;
+    if (this.enableHelp) {
+      this.userOutput("HELP");
     }
+
+  }
+  clearData(resource, k) {
+    if (window.confirm('Do you want to erase all data...?')) {
+      resource.series.splice(1);
+    }
+
 
   }
 }
